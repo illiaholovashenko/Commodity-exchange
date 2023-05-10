@@ -1,3 +1,5 @@
+using Біржа_товарів.Forms;
+
 namespace Біржа_товарів
 {
     internal static class Program
@@ -8,10 +10,10 @@ namespace Біржа_товарів
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
+
         }
     }
 }
