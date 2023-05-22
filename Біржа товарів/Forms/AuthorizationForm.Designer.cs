@@ -35,6 +35,9 @@
             ToRegisterWindow = new LinkLabel();
             LoginField = new TextBox();
             PasswordField = new TextBox();
+            LoginError = new Label();
+            PasswordError = new Label();
+            MainError = new Label();
             SuspendLayout();
             // 
             // WindowName
@@ -77,7 +80,7 @@
             AuthorizationButton.TabIndex = 3;
             AuthorizationButton.Text = "Увійти";
             AuthorizationButton.UseVisualStyleBackColor = true;
-            AuthorizationButton.Click += button1_Click;
+            AuthorizationButton.Click += AuthorizationButton_Click;
             // 
             // ToRegisterWindow
             // 
@@ -99,6 +102,8 @@
             LoginField.Name = "LoginField";
             LoginField.Size = new Size(215, 23);
             LoginField.TabIndex = 5;
+            LoginField.Validating += LoginField_Validating;
+            LoginField.Validated += LoginField_Validated;
             // 
             // PasswordField
             // 
@@ -107,12 +112,47 @@
             PasswordField.Name = "PasswordField";
             PasswordField.Size = new Size(215, 23);
             PasswordField.TabIndex = 6;
+            PasswordField.Validating += PasswordField_Validating;
+            PasswordField.Validated += PasswordField_Validated;
+            // 
+            // LoginError
+            // 
+            LoginError.AutoSize = true;
+            LoginError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            LoginError.ForeColor = Color.Red;
+            LoginError.Location = new Point(35, 212);
+            LoginError.Name = "LoginError";
+            LoginError.Size = new Size(0, 15);
+            LoginError.TabIndex = 16;
+            // 
+            // PasswordError
+            // 
+            PasswordError.AutoSize = true;
+            PasswordError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordError.ForeColor = Color.Red;
+            PasswordError.Location = new Point(35, 306);
+            PasswordError.Name = "PasswordError";
+            PasswordError.Size = new Size(0, 15);
+            PasswordError.TabIndex = 17;
+            // 
+            // MainError
+            // 
+            MainError.AutoSize = true;
+            MainError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MainError.ForeColor = Color.Red;
+            MainError.Location = new Point(156, 342);
+            MainError.Name = "MainError";
+            MainError.Size = new Size(0, 15);
+            MainError.TabIndex = 18;
             // 
             // AuthorizationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(474, 451);
+            Controls.Add(MainError);
+            Controls.Add(PasswordError);
+            Controls.Add(LoginError);
             Controls.Add(PasswordField);
             Controls.Add(LoginField);
             Controls.Add(ToRegisterWindow);
@@ -123,6 +163,7 @@
             Name = "AuthorizationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
+            FormClosing += AuthorizationForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,5 +177,8 @@
         private LinkLabel ToRegisterWindow;
         private TextBox LoginField;
         private TextBox PasswordField;
+        private Label LoginError;
+        private Label PasswordError;
+        private Label MainError;
     }
 }

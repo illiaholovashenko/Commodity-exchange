@@ -38,11 +38,17 @@
             LoginLable = new Label();
             PasswordLabel = new Label();
             SurnameField = new TextBox();
-            textBox1 = new TextBox();
+            PhoneField = new TextBox();
             LoginField = new TextBox();
             PasswordField = new TextBox();
             RegistrationButton = new Button();
             ToAuthorizationFormLink = new LinkLabel();
+            NameError = new Label();
+            SurnameError = new Label();
+            PhoneError = new Label();
+            LoginError = new Label();
+            PasswordError = new Label();
+            MainError = new Label();
             SuspendLayout();
             // 
             // RagistrationLabel
@@ -96,6 +102,8 @@
             NameField.Name = "NameField";
             NameField.Size = new Size(215, 23);
             NameField.TabIndex = 4;
+            NameField.Validating += NameField_Validating;
+            NameField.Validated += NameField_Validated;
             // 
             // SurnameLable
             // 
@@ -144,14 +152,19 @@
             SurnameField.Name = "SurnameField";
             SurnameField.Size = new Size(215, 23);
             SurnameField.TabIndex = 9;
+            SurnameField.Validating += SurnameField_Validating;
+            SurnameField.Validated += SurnameField_Validated;
             // 
-            // textBox1
+            // PhoneField
             // 
-            textBox1.Location = new Point(35, 355);
-            textBox1.MaxLength = 100;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(215, 23);
-            textBox1.TabIndex = 10;
+            PhoneField.Location = new Point(35, 355);
+            PhoneField.MaxLength = 16;
+            PhoneField.Name = "PhoneField";
+            PhoneField.PlaceholderText = "+380-__-___-____";
+            PhoneField.Size = new Size(215, 23);
+            PhoneField.TabIndex = 10;
+            PhoneField.Validating += PhoneField_Validating;
+            PhoneField.Validated += PhoneField_Validated;
             // 
             // LoginField
             // 
@@ -160,14 +173,20 @@
             LoginField.Name = "LoginField";
             LoginField.Size = new Size(215, 23);
             LoginField.TabIndex = 11;
+            LoginField.Validating += LoginField_Validating;
+            LoginField.Validated += LoginField_Validated;
             // 
             // PasswordField
             // 
             PasswordField.Location = new Point(35, 496);
             PasswordField.MaxLength = 100;
             PasswordField.Name = "PasswordField";
+            PasswordField.PasswordChar = '*';
             PasswordField.Size = new Size(215, 23);
             PasswordField.TabIndex = 12;
+            PasswordField.UseSystemPasswordChar = true;
+            PasswordField.Validating += PasswordField_Validating;
+            PasswordField.Validated += PasswordField_Validated;
             // 
             // RegistrationButton
             // 
@@ -178,6 +197,7 @@
             RegistrationButton.TabIndex = 13;
             RegistrationButton.Text = "Зареєструватись";
             RegistrationButton.UseVisualStyleBackColor = true;
+            RegistrationButton.Click += RegistrationButton_Click;
             // 
             // ToAuthorizationFormLink
             // 
@@ -191,16 +211,82 @@
             ToAuthorizationFormLink.Text = "Вже є акаунт";
             ToAuthorizationFormLink.LinkClicked += ToAuthorizationFormLink_LinkClicked;
             // 
+            // NameError
+            // 
+            NameError.AutoSize = true;
+            NameError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            NameError.ForeColor = Color.Red;
+            NameError.Location = new Point(35, 242);
+            NameError.Name = "NameError";
+            NameError.Size = new Size(0, 15);
+            NameError.TabIndex = 15;
+            // 
+            // SurnameError
+            // 
+            SurnameError.AutoSize = true;
+            SurnameError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            SurnameError.ForeColor = Color.Red;
+            SurnameError.Location = new Point(35, 312);
+            SurnameError.Name = "SurnameError";
+            SurnameError.Size = new Size(0, 15);
+            SurnameError.TabIndex = 16;
+            // 
+            // PhoneError
+            // 
+            PhoneError.AutoSize = true;
+            PhoneError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PhoneError.ForeColor = Color.Red;
+            PhoneError.Location = new Point(35, 380);
+            PhoneError.Name = "PhoneError";
+            PhoneError.Size = new Size(0, 15);
+            PhoneError.TabIndex = 17;
+            // 
+            // LoginError
+            // 
+            LoginError.AutoSize = true;
+            LoginError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            LoginError.ForeColor = Color.Red;
+            LoginError.Location = new Point(35, 454);
+            LoginError.Name = "LoginError";
+            LoginError.Size = new Size(0, 15);
+            LoginError.TabIndex = 18;
+            // 
+            // PasswordError
+            // 
+            PasswordError.AutoSize = true;
+            PasswordError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordError.ForeColor = Color.Red;
+            PasswordError.Location = new Point(35, 522);
+            PasswordError.Name = "PasswordError";
+            PasswordError.Size = new Size(0, 15);
+            PasswordError.TabIndex = 19;
+            // 
+            // MainError
+            // 
+            MainError.AutoSize = true;
+            MainError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MainError.ForeColor = Color.Red;
+            MainError.Location = new Point(157, 537);
+            MainError.Name = "MainError";
+            MainError.Size = new Size(0, 15);
+            MainError.TabIndex = 20;
+            // 
             // RegistrationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(474, 652);
+            Controls.Add(MainError);
+            Controls.Add(PasswordError);
+            Controls.Add(LoginError);
+            Controls.Add(PhoneError);
+            Controls.Add(SurnameError);
+            Controls.Add(NameError);
             Controls.Add(ToAuthorizationFormLink);
             Controls.Add(RegistrationButton);
             Controls.Add(PasswordField);
             Controls.Add(LoginField);
-            Controls.Add(textBox1);
+            Controls.Add(PhoneField);
             Controls.Add(SurnameField);
             Controls.Add(PasswordLabel);
             Controls.Add(LoginLable);
@@ -231,10 +317,16 @@
         private Label LoginLable;
         private Label PasswordLabel;
         private TextBox SurnameField;
-        private TextBox textBox1;
+        private TextBox PhoneField;
         private TextBox LoginField;
         private TextBox PasswordField;
         private Button RegistrationButton;
         private LinkLabel ToAuthorizationFormLink;
+        private Label NameError;
+        private Label SurnameError;
+        private Label PhoneError;
+        private Label LoginError;
+        private Label PasswordError;
+        private Label MainError;
     }
 }

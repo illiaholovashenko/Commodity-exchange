@@ -12,7 +12,7 @@ namespace Біржа_товарів
         {
             
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new AuthorizationForm());
 
         }
     }
