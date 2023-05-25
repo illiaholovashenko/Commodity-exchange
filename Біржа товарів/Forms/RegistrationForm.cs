@@ -44,9 +44,9 @@ namespace Біржа_товарів.Forms
                 const string SellersData = DataBasePath + "Sellers.txt";
 
                 bool isLoginAvailable = Validators.Validators.IsLoginAvailable(BuyersData, LoginField.Text)
-                    || Validators.Validators.IsLoginAvailable(SellersData, LoginField.Text);
+                    && Validators.Validators.IsLoginAvailable(SellersData, LoginField.Text);
                 bool isTelephoneAvailable = Validators.Validators.IsTelephoneAvailable(BuyersData, PhoneField.Text)
-                    || Validators.Validators.IsTelephoneAvailable(SellersData, PhoneField.Text);
+                    && Validators.Validators.IsTelephoneAvailable(SellersData, PhoneField.Text);
 
                 if (isLoginAvailable && isTelephoneAvailable)
                 {

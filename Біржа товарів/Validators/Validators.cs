@@ -59,7 +59,9 @@ namespace Біржа_товарів.Validators
                 if (control is TextBox textBox)
                 {
                     if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
                         return false;
+                    }
                 }
             }
             return true;
@@ -74,11 +76,11 @@ namespace Біржа_товарів.Validators
                 {
                     if (line.Contains($"Логін: {login}"))
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
 
         public static bool IsTelephoneAvailable(string path, string phoneNumber)
@@ -90,11 +92,11 @@ namespace Біржа_товарів.Validators
                 {
                     if (line.Contains($"Телефон: {phoneNumber}"))
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
 
         private static bool HasLetter(string Name, out string ErrorMessage)
