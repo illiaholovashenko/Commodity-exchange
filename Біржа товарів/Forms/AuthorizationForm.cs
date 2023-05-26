@@ -1,5 +1,8 @@
+using System.Security.AccessControl;
 using Біржа_товарів.Forms;
 using Біржа_товарів.Models;
+using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів
 {
@@ -24,8 +27,7 @@ namespace Біржа_товарів
 
         private void LoginField_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(LoginField,
-                LoginError, e, Validators.Validators.IsLoginValid);
+            ValidateField(LoginField, LoginError, e, IsLoginValid);
         }
 
         private void LoginField_Validated(object sender, EventArgs e)
@@ -35,8 +37,7 @@ namespace Біржа_товарів
 
         private void PasswordField_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(PasswordField,
-                PasswordError, e, Validators.Validators.IsPasswordValid);
+            ValidateField(PasswordField, PasswordError, e, IsPasswordValid);
         }
 
         private void PasswordField_Validated(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace Біржа_товарів
 
         private void AuthorizationButton_Click(object sender, EventArgs e)
         {
-            bool IsSuccess = Validators.Validators.AreFieldsFilled(this);
+            bool IsSuccess = AreFieldsFilled(this);
 
             if (!IsSuccess)
             {
@@ -54,23 +55,62 @@ namespace Біржа_товарів
             }
             else
             {
-                //string UserData = $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text};";
-                //const string BuyersData = @"C:\курсова\Біржа товарів\Біржа товарів\Data\Buyers.txt";
-                //const string SellersData = @"C:\курсова\Біржа товарів\Біржа товарів\Data\Sellers.txt";
+                string? user;
+                bool isSalesman = !IsLoginAvailable(SellersData, LoginField.Text);
+                bool isCustomer = !IsLoginAvailable(BuyersData, LoginField.Text);
+                if (isSalesman)
+                {
+                    if ((user = IsPasswordCorrect(SellersData,
+                        LoginField.Text, PasswordField.Text)) == null)
+                    {
+                        PasswordError.Text = "Пароль не правльний";
+                    }
+                    else 
+                    {
+                        Salesman salesman = new Salesman(UserLogIn(user));
 
-                //if (SalesMan.Checked)
-                //{
-                //    Data.DataAccess.WriteToDataBase(SellersData, UserData);
-                //}
-                //else
-                //{
-                //    Data.DataAccess.WriteToDataBase(BuyersData, UserData);
-                //}
+                        this.Hide();
+                        MainForm mainForm = new MainForm(salesman, "Продавець");
+                        mainForm.Show();
+                    }
+                }
+                else if (isCustomer)
+                {
+                    if ((user = IsPasswordCorrect(BuyersData,
+                        LoginField.Text, PasswordField.Text)) == null)
+                    {
+                        PasswordError.Text = "Пароль не правльний";
+                    }
+                    else
+                    {
+                        Customer customer = new Customer(UserLogIn(user));
 
-                this.Hide();
-                MainForm mainForm = new MainForm();
-                mainForm.Show();
+                        this.Hide();
+                        MainForm mainForm = new MainForm(customer, "Покупець");
+                        mainForm.Show();
+                    }
+                }
+                else
+                {
+                    LoginError.Text = "Не правильний логін";
+                }
             }
+        }
+
+        private string[] UserLogIn(string UserData)
+        {
+            string[] userData = new string[5];
+
+            string[] DataPairs = UserData.Split(", ");
+
+            userData[0] = DataPairs[0].Split(": ")[1]+ " ";
+
+            for (int i = 0; i < DataPairs.Length - 1; i++)
+            {
+                userData[i] += DataPairs[i+1].Split(": ")[1];
+            }
+
+            return userData;
         }
     }
 }

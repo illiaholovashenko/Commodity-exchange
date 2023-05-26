@@ -32,6 +32,9 @@
             FindProductButton = new Button();
             AddProductButton = new Button();
             ExitButton = new Button();
+            RankLabel = new Label();
+            RankText = new Label();
+            MeetingLabel = new Label();
             SuspendLayout();
             // 
             // MainFormLabel
@@ -68,18 +71,50 @@
             // 
             // ExitButton
             // 
-            ExitButton.Location = new Point(713, 12);
+            ExitButton.Location = new Point(713, 29);
             ExitButton.Name = "ExitButton";
             ExitButton.Size = new Size(75, 23);
             ExitButton.TabIndex = 3;
             ExitButton.Text = "Вийти";
             ExitButton.UseVisualStyleBackColor = true;
             // 
+            // RankLabel
+            // 
+            RankLabel.AutoSize = true;
+            RankLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            RankLabel.Location = new Point(16, 31);
+            RankLabel.Name = "RankLabel";
+            RankLabel.Size = new Size(64, 21);
+            RankLabel.TabIndex = 4;
+            RankLabel.Text = "Звання:";
+            // 
+            // RankText
+            // 
+            RankText.AutoSize = true;
+            RankText.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            RankText.Location = new Point(86, 31);
+            RankText.Name = "RankText";
+            RankText.Size = new Size(0, 21);
+            RankText.TabIndex = 5;
+            // 
+            // MeetingLabel
+            // 
+            MeetingLabel.AutoSize = true;
+            MeetingLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            MeetingLabel.Location = new Point(411, 31);
+            MeetingLabel.Name = "MeetingLabel";
+            MeetingLabel.Size = new Size(65, 21);
+            MeetingLabel.TabIndex = 6;
+            MeetingLabel.Text = "Привіт, ";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(MeetingLabel);
+            Controls.Add(RankText);
+            Controls.Add(RankLabel);
             Controls.Add(ExitButton);
             Controls.Add(AddProductButton);
             Controls.Add(FindProductButton);
@@ -88,6 +123,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
             FormClosing += MainForm_FormClosing;
+            Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -98,5 +134,8 @@
         private Button FindProductButton;
         private Button AddProductButton;
         private Button ExitButton;
+        private Label RankLabel;
+        public Label RankText;
+        public Label MeetingLabel;
     }
 }

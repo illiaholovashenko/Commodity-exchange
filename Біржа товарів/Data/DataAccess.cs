@@ -8,8 +8,9 @@ namespace Біржа_товарів.Data
 {
     internal static class DataAccess
     {
-        const string BuyersData = @"C:\курсова\Біржа товарів\Біржа товарів\Buyers.txt";
-        const string SellersData = @"C:\курсова\Біржа товарів\Біржа товарів\Sellers.txt";
+        public const string DataBasePath = @"C:\курсова\Біржа товарів\Біржа товарів\DataBase\";
+        public const string BuyersData = DataBasePath + "Buyers.txt";
+        public const string SellersData = DataBasePath + "Sellers.txt";
 
         public static void WriteToDataBase(string Path, string Data)
         {

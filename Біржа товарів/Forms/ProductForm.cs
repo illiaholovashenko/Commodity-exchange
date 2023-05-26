@@ -7,21 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Біржа_товарів.Models;
 
 namespace Біржа_товарів.Forms
 {
     public partial class ProductForm : Form
     {
-        public ProductForm()
+        Customer? customer;
+
+        Salesman? salesman;
+
+        public ProductForm(User user, string rank)
         {
             InitializeComponent();
+
+            if (rank == "Покупець")
+            {
+                customer = (Customer)user;
+            }
+            else
+            {
+                salesman = (Salesman)user;
+            }
         }
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            if (customer != null)
+            {
+                this.Hide();
+                MainForm mainForm = new MainForm(customer, customer.ClassName);
+                mainForm.Show();
+            }
+            else
+            {
+                this.Hide();
+                MainForm mainForm = new MainForm(salesman, salesman.ClassName);
+                mainForm.Show();
+            }
         }
 
         private void ProductForm_FormClosing(object sender, FormClosingEventArgs e)

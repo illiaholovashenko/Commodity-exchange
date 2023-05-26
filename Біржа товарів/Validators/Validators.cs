@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Біржа_товарів.Validators
 {
-    internal static class Validators
+    public static class Validators
     {
         public static void ValidateField(TextBox textField, 
             Label errorLabel, CancelEventArgs e, 
@@ -74,13 +74,32 @@ namespace Біржа_товарів.Validators
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (line.Contains($"Логін: {login}"))
+                    if (line.Contains($"Логін: {login},"))
                     {
                         return false;
                     }
                 }
             }
             return true;
+        }
+
+        public static string? IsPasswordCorrect(string path, string login, string password)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains($"Логін: {login},"))
+                    {
+                        if (line.Contains($"Пароль: {password},"))
+                        {
+                            return line;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public static bool IsTelephoneAvailable(string path, string phoneNumber)

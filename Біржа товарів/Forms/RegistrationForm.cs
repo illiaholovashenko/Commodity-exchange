@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Forms
 {
@@ -31,7 +33,7 @@ namespace Біржа_товарів.Forms
 
         private void RegistrationButton_Click(object sender, EventArgs e)
         {
-            bool IsSuccess = Validators.Validators.AreFieldsFilled(this);
+            bool IsSuccess = AreFieldsFilled(this);
 
             if (!IsSuccess)
             {
@@ -39,18 +41,14 @@ namespace Біржа_товарів.Forms
             }
             else
             {
-                const string DataBasePath = @"C:\курсова\Біржа товарів\Біржа товарів\DataBase\";
-                const string BuyersData = DataBasePath + "Buyers.txt";
-                const string SellersData = DataBasePath + "Sellers.txt";
-
-                bool isLoginAvailable = Validators.Validators.IsLoginAvailable(BuyersData, LoginField.Text)
-                    && Validators.Validators.IsLoginAvailable(SellersData, LoginField.Text);
-                bool isTelephoneAvailable = Validators.Validators.IsTelephoneAvailable(BuyersData, PhoneField.Text)
-                    && Validators.Validators.IsTelephoneAvailable(SellersData, PhoneField.Text);
+                bool isLoginAvailable = IsLoginAvailable(BuyersData, LoginField.Text)
+                    && IsLoginAvailable(SellersData, LoginField.Text);
+                bool isTelephoneAvailable = IsTelephoneAvailable(BuyersData, PhoneField.Text)
+                    && IsTelephoneAvailable(SellersData, PhoneField.Text);
 
                 if (isLoginAvailable && isTelephoneAvailable)
                 {
-                    Data.DataAccess.CreateDirectory(DataBasePath + LoginField.Text + "Products");
+                    CreateDirectory(DataBasePath + LoginField.Text + "Products");
                     string UserData = $"Ім'я: {NameField.Text}, " +
                         $"Прізвище: {SurnameField.Text}, Телефон: {PhoneField.Text}, " +
                         $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, " +
@@ -58,11 +56,11 @@ namespace Біржа_товарів.Forms
 
                     if (SalesMan.Checked)
                     {
-                        Data.DataAccess.WriteToDataBase(SellersData, UserData);
+                        WriteToDataBase(SellersData, UserData);
                     }
                     else
                     {
-                        Data.DataAccess.WriteToDataBase(BuyersData, UserData);
+                        WriteToDataBase(BuyersData, UserData);
                     }
 
                     this.Hide();
@@ -87,8 +85,7 @@ namespace Біржа_товарів.Forms
 
         private void NameField_Validating(object sender, CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(NameField,
-                NameError, e, Validators.Validators.IsFieldValid);
+            ValidateField(NameField, NameError, e, IsFieldValid);
         }
 
         private void NameField_Validated(object sender, EventArgs e)
@@ -98,8 +95,7 @@ namespace Біржа_товарів.Forms
 
         private void SurnameField_Validating(object sender, CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(SurnameField,
-                SurnameError, e, Validators.Validators.IsFieldValid);
+            ValidateField(SurnameField, SurnameError, e, IsFieldValid);
         }
 
         private void SurnameField_Validated(object sender, EventArgs e)
@@ -109,8 +105,7 @@ namespace Біржа_товарів.Forms
 
         private void PhoneField_Validating(object sender, CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(PhoneField,
-                PhoneError, e, Validators.Validators.IsNumberValid);
+            ValidateField(PhoneField, PhoneError, e, IsNumberValid);
         }
 
         private void PhoneField_Validated(object sender, EventArgs e)
@@ -120,8 +115,7 @@ namespace Біржа_товарів.Forms
 
         private void LoginField_Validating(object sender, CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(LoginField,
-                LoginError, e, Validators.Validators.IsLoginValid);
+            ValidateField(LoginField, LoginError, e, IsLoginValid);
         }
 
         private void LoginField_Validated(object sender, EventArgs e)
@@ -131,8 +125,7 @@ namespace Біржа_товарів.Forms
 
         private void PasswordField_Validating(object sender, CancelEventArgs e)
         {
-            Validators.Validators.ValidateField(PasswordField,
-                PasswordError, e, Validators.Validators.IsPasswordValid);
+            ValidateField(PasswordField, PasswordError, e, IsPasswordValid);
         }
 
         private void PasswordField_Validated(object sender, EventArgs e)
