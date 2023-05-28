@@ -8,9 +8,9 @@ namespace Біржа_товарів.Data
 {
     internal static class DataAccess
     {
-        public const string DataBasePath = @"C:\курсова\Біржа товарів\Біржа товарів\DataBase\";
-        public const string BuyersData = DataBasePath + "Buyers.txt";
-        public const string SellersData = DataBasePath + "Sellers.txt";
+        public const string DataBasePath = @"\Біржа товарів\DataBase\";
+        public const string CustomersData = DataBasePath + "Customers.txt";
+        public const string SalesmenData = DataBasePath + "Salesmen.txt";
 
         public static void WriteToDataBase(string Path, string Data)
         {
@@ -20,24 +20,20 @@ namespace Біржа_товарів.Data
             }
         }
 
-        public static void CreateDirectory(string Path) 
+        public static string? GetItemFromDatabase(string path, string FullLogOrPhoneField)
         {
-            try
+            using (StreamReader reader = new StreamReader(path))
             {
-                if (!Directory.Exists(Path))
+                string? line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    Directory.CreateDirectory(Path);
-                }
-                else
-                {
-                    Console.WriteLine("Така папка існує.");
+                    if (line.Contains(FullLogOrPhoneField))
+                    {
+                        return line;
+                    }
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Помилка: " + e.Message);
-            }
+            return null;
         }
-
     }
 }

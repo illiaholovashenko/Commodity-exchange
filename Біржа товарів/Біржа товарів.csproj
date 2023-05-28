@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataBase\BuyersProducts\**" />
+    <Compile Remove="DataBase\SellersProducts\**" />
+    <EmbeddedResource Remove="DataBase\BuyersProducts\**" />
+    <EmbeddedResource Remove="DataBase\SellersProducts\**" />
+    <None Remove="DataBase\BuyersProducts\**" />
+    <None Remove="DataBase\SellersProducts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -22,6 +31,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataBase\CustomersAddedProducts\" />
+    <Folder Include="DataBase\SalesmenAddedProducts\" />
   </ItemGroup>
 
 </Project>

@@ -7,18 +7,32 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Validators
 {
     public static class Validators
     {
-        public static void ValidateField(TextBox textField, 
-            Label errorLabel, CancelEventArgs e, 
-            FieldValidationDelegate fieldValidationDelegate)
+        public static void ValidateField(TextBox textField, Label errorLabel, 
+            CancelEventArgs e, FieldValidationDelegate fieldValidationDelegate)
         {
             string errorMessage;
 
             if (!fieldValidationDelegate(textField.Text, out errorMessage))
+            {
+                e.Cancel = true;
+                textField.Select(0, textField.Text.Length);
+                errorLabel.Text = errorMessage;
+            }
+        }
+
+        public static void AvailabilityCheck(TextBox textField, Label errorLabel,
+            string FieldName, CancelEventArgs e, IsAvailableDelegate isAvailableDelegate)
+        {
+            string errorMessage;
+
+            if (!isAvailableDelegate(FieldName, textField.Text, out errorMessage))
             {
                 e.Cancel = true;
                 textField.Select(0, textField.Text.Length);
@@ -52,6 +66,23 @@ namespace Біржа_товарів.Validators
                 && IsEnoughLetter(Name, out ErrorMessage);
         }
 
+        public static bool IsProductNameValid(string Name, out string ErrorMessage)
+        {
+            return ProductFieldsValidating(Name, out ErrorMessage, IsEngAndUkrLetters)
+                && HasLetter(Name, out ErrorMessage);
+        }
+
+        public static bool IsProductPriceValid(string Name, out string ErrorMessage)
+        {
+            return ProductFieldsValidating(Name, out ErrorMessage, IsNumbers)
+                && HasLetter(Name, out ErrorMessage);
+        }
+
+        public static bool IsAdressValid(string Name, out string ErrorMessage)
+        {
+            return ProductFieldsValidating(Name, out ErrorMessage, IsAdress);
+        }
+
         public static bool AreFieldsFilled(Form form)
         {
             foreach (Control control in form.Controls)
@@ -67,55 +98,55 @@ namespace Біржа_товарів.Validators
             return true;
         }
 
-        public static bool IsLoginAvailable(string path, string login)
+        public static int FieldsFilled(Form form)
         {
-            using (StreamReader reader = new StreamReader(path))
+            int counter = 0;
+
+            foreach (Control control in form.Controls)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                if (control is TextBox textBox)
                 {
-                    if (line.Contains($"Логін: {login},"))
+                    if (!string.IsNullOrWhiteSpace(textBox.Text))
                     {
-                        return false;
+                        counter++;
                     }
                 }
             }
-            return true;
+            return counter;
         }
 
-        public static string? IsPasswordCorrect(string path, string login, string password)
+        public static bool IsAvailable(string FieldName, string Name, out string ErrorMessage)
         {
-            using (StreamReader reader = new StreamReader(path))
+            if ((GetItemFromDatabase(CustomersData, $"{FieldName}: {Name},") == null) 
+                && (GetItemFromDatabase(SalesmenData, $"{FieldName}: {Name},")) == null)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.Contains($"Логін: {login},"))
-                    {
-                        if (line.Contains($"Пароль: {password},"))
-                        {
-                            return line;
-                        }
-                    }
-                }
+                ErrorMessage = "";
+                return true;
             }
-            return null;
+
+            ErrorMessage = $"Цей {FieldName} не доступний";
+            return false;
         }
 
-        public static bool IsTelephoneAvailable(string path, string phoneNumber)
+        public static void ChangeForm<T>(Form thisForm) where T : Form, new()
         {
-            using (StreamReader reader = new StreamReader(path))
+            thisForm.Hide();
+            T newForm = new T();
+            newForm.Show();
+        }
+
+        public static string[] GetData(string Data, int fieldsCount)
+        {
+            string[] result = new string[fieldsCount];
+
+            string[] DataPairs = Data.Split(", ");
+
+            for (int i = 0; i < DataPairs.Length; i++)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.Contains($"Телефон: {phoneNumber}"))
-                    {
-                        return false;
-                    }
-                }
+                result[i] = DataPairs[i].Split(": ")[1];
             }
-            return true;
+
+            return result;
         }
 
         private static bool HasLetter(string Name, out string ErrorMessage)
@@ -190,7 +221,7 @@ namespace Біржа_товарів.Validators
         {
             if (Name.Length < 8)
             {
-                ErrorMessage = "Пароль має бути довше 8-ми символів";
+                ErrorMessage = "Поле має бути довше 8-ми символів";
                 return false;
             }
 
@@ -198,6 +229,62 @@ namespace Біржа_товарів.Validators
             return true;
         }
 
+        private static bool IsEngAndUkrLetters(string Name, out string ErrorMessage)
+        {
+            Regex LettersAndGap = new Regex(@"^[А-ЩЬЮЯЇІЄҐа-щьюяїієґA-Za-z\s]+$");
+
+            if (!LettersAndGap.IsMatch(Name))
+            {
+                ErrorMessage = "Поле може містити виключно українські або англійські літери";
+                return false;
+            }
+
+            ErrorMessage = "";
+            return true;
+        }
+
+        private static bool IsNumbers(string Name, out string ErrorMessage)
+        {
+            Regex LettersAndGap = new Regex(@"^(?!0+$)\d+$");
+
+            if (!LettersAndGap.IsMatch(Name))
+            {
+                ErrorMessage = "Поле може містити виключно числа";
+                return false;
+            }
+
+            ErrorMessage = "";
+            return true;
+        }
+
+        private static bool IsAdress(string Name, out string ErrorMessage)
+        {
+            Regex Adress = new Regex(@"^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ]+,\s*\d+,\s*[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+,\s*[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+\s*\d+$");
+
+            if (!Adress.IsMatch(Name))
+            {
+                ErrorMessage = "Введіть аресу у форматі: Країна, Індекс, Місто, Вулиця Номер";
+                return false;
+            }
+
+            ErrorMessage = "";
+            return true;
+        }
+
+        private static bool ProductFieldsValidating(string Name, out string ErrorMessage, FieldValidationDelegate fieldValidationDelegate)
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                ErrorMessage = "";
+                return true;
+            }
+
+            return fieldValidationDelegate(Name, out ErrorMessage);
+        }
+
+
         public delegate bool FieldValidationDelegate(string name, out string errorMessage);
+
+        public delegate bool IsAvailableDelegate(string FieldName, string name, out string errorMessage);
     }
 }

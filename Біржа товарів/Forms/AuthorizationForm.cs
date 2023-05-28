@@ -15,9 +15,7 @@ namespace Біржа_товарів
 
         private void ToRegisterWindow_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            RegistrationForm RegistrationForm = new RegistrationForm();
-            RegistrationForm.Show();
+            ChangeForm<RegistrationForm>(this);
         }
 
         private void AuthorizationForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -55,62 +53,56 @@ namespace Біржа_товарів
             }
             else
             {
+                MainError.Text = "";
+
                 string? user;
-                bool isSalesman = !IsLoginAvailable(SellersData, LoginField.Text);
-                bool isCustomer = !IsLoginAvailable(BuyersData, LoginField.Text);
+                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text},"));
+                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text},"));
+                
                 if (isSalesman)
                 {
-                    if ((user = IsPasswordCorrect(SellersData,
-                        LoginField.Text, PasswordField.Text)) == null)
+                    user = GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text},");
+
+                    if (user.Contains($"Пароль: {PasswordField.Text},"))
                     {
-                        PasswordError.Text = "Пароль не правльний";
+                        Salesman salesman = new Salesman(GetData(user, 6));
+
+                        this.Hide();
+                        MainForm mainForm = new MainForm(salesman);
+                        mainForm.Show();
                     }
                     else 
                     {
-                        Salesman salesman = new Salesman(UserLogIn(user));
-
-                        this.Hide();
-                        MainForm mainForm = new MainForm(salesman, "Продавець");
-                        mainForm.Show();
+                        PasswordError.Text = "Пароль не правльний";
                     }
                 }
                 else if (isCustomer)
                 {
-                    if ((user = IsPasswordCorrect(BuyersData,
-                        LoginField.Text, PasswordField.Text)) == null)
+                    user = GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text},");
+
+                    if (user.Contains($"Пароль: {PasswordField.Text},"))
                     {
-                        PasswordError.Text = "Пароль не правльний";
+                        Customer customer = new Customer(GetData(user, 6));
+
+                        this.Hide();
+                        MainForm mainForm = new MainForm(customer);
+                        mainForm.Show();
                     }
                     else
                     {
-                        Customer customer = new Customer(UserLogIn(user));
-
-                        this.Hide();
-                        MainForm mainForm = new MainForm(customer, "Покупець");
-                        mainForm.Show();
+                        PasswordError.Text = "Пароль не правльний";
                     }
                 }
                 else
                 {
-                    LoginError.Text = "Не правильний логін";
+                    LoginError.Text = "Логін не правильний";
                 }
             }
         }
 
-        private string[] UserLogIn(string UserData)
+        private bool IsAvailable(string? field)
         {
-            string[] userData = new string[5];
-
-            string[] DataPairs = UserData.Split(", ");
-
-            userData[0] = DataPairs[0].Split(": ")[1]+ " ";
-
-            for (int i = 0; i < DataPairs.Length - 1; i++)
-            {
-                userData[i] += DataPairs[i+1].Split(": ")[1];
-            }
-
-            return userData;
+            return field == null;
         }
     }
 }

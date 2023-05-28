@@ -9,59 +9,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Біржа_товарів.Models;
+using static Біржа_товарів.Validators.Validators;
 
 namespace Біржа_товарів.Forms
 {
     public partial class MainForm : Form
     {
-        Customer customer;
+        internal User user;
 
-        Salesman salesman;
-
-        public MainForm(User user, string rank)
+        public MainForm(User user)
         {
             InitializeComponent();
 
-            if (rank == "Покупець")
-            {
-                customer = (Customer)user;
-            }
-            else
-            {
-                salesman = (Salesman)user;
-            }
+            this.user = user;
         }
 
         private void FindProductButton_Click(object sender, EventArgs e)
         {
-            if (customer != null)
-            {
-                this.Hide();
-                SearchProductForm searchProductForm = new SearchProductForm(customer, customer.ClassName);
-                searchProductForm.Show();
-            }
-            else
-            {
-                this.Hide();
-                SearchProductForm searchProductForm = new SearchProductForm(salesman, salesman.ClassName);
-                searchProductForm.Show();
-            }
+            this.Hide();
+            SearchProductForm searchProductForm = new SearchProductForm(user);
+            searchProductForm.Show();
         }
 
         private void AddProductButton_Click(object sender, EventArgs e)
         {
-            if (customer != null)
-            {
-                this.Hide();
-                AddProductForm addProductForm = new AddProductForm(customer, customer.ClassName);
-                addProductForm.Show();
-            }
-            else
-            {
-                this.Hide();
-                AddProductForm addProductForm = new AddProductForm(salesman, salesman.ClassName);
-                addProductForm.Show();
-            }
+            this.Hide();
+            AddProductForm addProductForm = new AddProductForm(user);
+            addProductForm.Show();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -71,16 +45,15 @@ namespace Біржа_товарів.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (customer != null)
-            {
-                RankText.Text = customer.ClassName;
-                MeetingLabel.Text = $"Привіт, {customer.FullName}!";
-            }
-            else
-            {
-                RankText.Text = salesman.ClassName;
-                MeetingLabel.Text = $"Привіт, {salesman.FullName}!";
-            }
+            RankText.Text = user.ClassName;
+            MeetingLabel.Text = $"Привіт, {user.FullName}!";
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            user = null;
+
+            ChangeForm<AuthorizationForm>(this);
         }
     }
 }

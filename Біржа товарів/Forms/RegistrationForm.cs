@@ -26,9 +26,7 @@ namespace Біржа_товарів.Forms
 
         private void ToAuthorizationFormLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            AuthorizationForm authorizationForm = new AuthorizationForm();
-            authorizationForm.Show();
+            ChangeForm<AuthorizationForm>(this);
         }
 
         private void RegistrationButton_Click(object sender, EventArgs e)
@@ -41,45 +39,23 @@ namespace Біржа_товарів.Forms
             }
             else
             {
-                bool isLoginAvailable = IsLoginAvailable(BuyersData, LoginField.Text)
-                    && IsLoginAvailable(SellersData, LoginField.Text);
-                bool isTelephoneAvailable = IsTelephoneAvailable(BuyersData, PhoneField.Text)
-                    && IsTelephoneAvailable(SellersData, PhoneField.Text);
+                MainError.Text = "";
 
-                if (isLoginAvailable && isTelephoneAvailable)
-                {
-                    CreateDirectory(DataBasePath + LoginField.Text + "Products");
-                    string UserData = $"Ім'я: {NameField.Text}, " +
-                        $"Прізвище: {SurnameField.Text}, Телефон: {PhoneField.Text}, " +
-                        $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, " +
-                        $"Товари: {DataBasePath + LoginField.Text}Products;";
+                string UserData = $"Ім'я: {NameField.Text}, " +
+                    $"Прізвище: {SurnameField.Text}, Телефон: {PhoneField.Text}, " +
+                    $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, " +
+                    $"Товари: {DataBasePath + LoginField.Text}Products.txt";
 
-                    if (SalesMan.Checked)
-                    {
-                        WriteToDataBase(SellersData, UserData);
-                    }
-                    else
-                    {
-                        WriteToDataBase(BuyersData, UserData);
-                    }
-
-                    this.Hide();
-                    AuthorizationForm authorizationForm = new AuthorizationForm();
-                    authorizationForm.Show();
-                }
-                else if (!isTelephoneAvailable)
+                if (SalesMan.Checked)
                 {
-                    PhoneError.Text = "Такий номер телефону вже зареєстроовано";
-                }
-                else if (!isLoginAvailable)
-                {
-                    LoginError.Text = "Такий Логін вже зареєстроовано";
+                    WriteToDataBase(SalesmenData, UserData);
                 }
                 else
                 {
-                    PhoneError.Text = "Такий номер телефону вже зареєстроовано";
-                    LoginError.Text = "Такий Логін вже зареєстроовано";
+                    WriteToDataBase(CustomersData, UserData);
                 }
+
+                ChangeForm<AuthorizationForm>(this);
             }
         }
 
@@ -106,6 +82,7 @@ namespace Біржа_товарів.Forms
         private void PhoneField_Validating(object sender, CancelEventArgs e)
         {
             ValidateField(PhoneField, PhoneError, e, IsNumberValid);
+            AvailabilityCheck(PhoneField, PhoneError, "Телефон", e, IsAvailable);
         }
 
         private void PhoneField_Validated(object sender, EventArgs e)
@@ -116,6 +93,7 @@ namespace Біржа_товарів.Forms
         private void LoginField_Validating(object sender, CancelEventArgs e)
         {
             ValidateField(LoginField, LoginError, e, IsLoginValid);
+            AvailabilityCheck(LoginField, LoginError, "Логін", e, IsAvailable);
         }
 
         private void LoginField_Validated(object sender, EventArgs e)

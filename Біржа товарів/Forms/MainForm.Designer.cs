@@ -77,6 +77,7 @@
             ExitButton.TabIndex = 3;
             ExitButton.Text = "Вийти";
             ExitButton.UseVisualStyleBackColor = true;
+            ExitButton.Click += ExitButton_Click;
             // 
             // RankLabel
             // 

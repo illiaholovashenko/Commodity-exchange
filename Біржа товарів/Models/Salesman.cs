@@ -9,7 +9,13 @@ namespace Біржа_товарів.Models
 {
     internal class Salesman: User
     {
-        public new string ClassName = "Продавець";
+        public override string ClassName 
+        {
+            get
+            {
+                return "Продавець";
+            }
+        }
 
         public Salesman(string[] data):base(data) { }
 

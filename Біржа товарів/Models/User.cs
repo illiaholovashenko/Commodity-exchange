@@ -7,9 +7,9 @@ using Біржа_товарів.Forms;
 
 namespace Біржа_товарів.Models
 {
-    public class User
+    public abstract class User
     {
-        public string ClassName;
+        public abstract string ClassName { get; }
 
         public string FullName { get; set; } = " ";
 
@@ -19,15 +19,17 @@ namespace Біржа_товарів.Models
 
         protected string Telephone;
 
-        protected string ProductsPath;
+        public string ProductsPath;
+
+        public List<Product> products = new List<Product>();
 
         public User(string[] data) 
         {
-            FullName = data[0];
-            Telephone = data[1];
-            Login = data[2];
-            Password = data[3];
-            ProductsPath = data[4];
+            FullName = data[0] + " " + data[1];
+            Telephone = data[2];
+            Login = data[3];
+            Password = data[4];
+            ProductsPath = data[5];
         }
 
         public virtual void SetMeetingText(MainForm mainForm)

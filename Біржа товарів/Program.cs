@@ -1,4 +1,5 @@
 using Біржа_товарів.Forms;
+using Біржа_товарів.Models;
 
 namespace Біржа_товарів
 {
@@ -10,7 +11,7 @@ namespace Біржа_товарів
         [STAThread]
         static void Main()
         {
-            
+          
             ApplicationConfiguration.Initialize();
             Application.Run(new AuthorizationForm());
 
