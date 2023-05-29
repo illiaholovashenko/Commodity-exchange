@@ -45,7 +45,7 @@ namespace Біржа_товарів
 
         private void AuthorizationButton_Click(object sender, EventArgs e)
         {
-            bool IsSuccess = AreFieldsFilled(this);
+            bool IsSuccess = FieldsFilled(this) == 2;
 
             if (!IsSuccess)
             {

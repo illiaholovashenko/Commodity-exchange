@@ -1,1 +1,2 @@
-﻿
+﻿Ім'я: Ілля, Прізвище: Головашенко, Телефон: +380-50-779-4723, Логін: admin, Пароль: 00000000, Товари: ..\..\..\DataBase\SalesmenAddedProducts\adminProducts.txt
+Ім'я: Сергій, Прізвище: Влащенко, Телефон: +380-95-324-3218, Логін: serega29, Пароль: seregaserega, Товари: ..\..\..\DataBase\SalesmenAddedProducts\serega29Products.txt

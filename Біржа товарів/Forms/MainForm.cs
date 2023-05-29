@@ -51,9 +51,12 @@ namespace Біржа_товарів.Forms
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            user = null;
+            DialogResult result = MessageBox.Show("Ви точно хочете вийти?", "Підтвердіть вихід", MessageBoxButtons.YesNo);
 
-            ChangeForm<AuthorizationForm>(this);
+            if (result == DialogResult.Yes)
+            {
+                ChangeForm<AuthorizationForm>(this);
+            }
         }
     }
 }

@@ -68,34 +68,19 @@ namespace Біржа_товарів.Validators
 
         public static bool IsProductNameValid(string Name, out string ErrorMessage)
         {
-            return ProductFieldsValidating(Name, out ErrorMessage, IsEngAndUkrLetters)
+            return IsLettersOrNumbers(Name, out ErrorMessage)
                 && HasLetter(Name, out ErrorMessage);
         }
 
         public static bool IsProductPriceValid(string Name, out string ErrorMessage)
         {
-            return ProductFieldsValidating(Name, out ErrorMessage, IsNumbers)
+            return IsNumbers(Name, out ErrorMessage)
                 && HasLetter(Name, out ErrorMessage);
         }
 
         public static bool IsAdressValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, IsAdress);
-        }
-
-        public static bool AreFieldsFilled(Form form)
-        {
-            foreach (Control control in form.Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    if (string.IsNullOrWhiteSpace(textBox.Text))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
         }
 
         public static int FieldsFilled(Form form)
@@ -153,7 +138,7 @@ namespace Біржа_товарів.Validators
         {
             if (Name.Length == 0)
             {
-                ErrorMessage = "Це поле має бути заповнено";
+                ErrorMessage = "Поле має бути заповнено";
                 return false;
             }
 
@@ -229,13 +214,13 @@ namespace Біржа_товарів.Validators
             return true;
         }
 
-        private static bool IsEngAndUkrLetters(string Name, out string ErrorMessage)
+        private static bool IsLettersOrNumbers(string Name, out string ErrorMessage)
         {
-            Regex LettersAndGap = new Regex(@"^[А-ЩЬЮЯЇІЄҐа-щьюяїієґA-Za-z\s]+$");
+            Regex LettersAndGap = new Regex(@"^[\p{L}\d\s]+$");
 
             if (!LettersAndGap.IsMatch(Name))
             {
-                ErrorMessage = "Поле може містити виключно українські або англійські літери";
+                ErrorMessage = "Поле має містити літери або цифри";
                 return false;
             }
 
@@ -249,7 +234,7 @@ namespace Біржа_товарів.Validators
 
             if (!LettersAndGap.IsMatch(Name))
             {
-                ErrorMessage = "Поле може містити виключно числа";
+                ErrorMessage = "Поле має містити числа більші за нуль";
                 return false;
             }
 

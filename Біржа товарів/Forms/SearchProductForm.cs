@@ -25,9 +25,14 @@ namespace Біржа_товарів.Forms
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm(user);
-            mainForm.Show();
+            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                MainForm mainForm = new MainForm(user);
+                mainForm.Show();
+            }
         }
 
         private void SearchProductForm_FormClosing(object sender, FormClosingEventArgs e)

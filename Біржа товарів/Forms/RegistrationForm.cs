@@ -31,7 +31,7 @@ namespace Біржа_товарів.Forms
 
         private void RegistrationButton_Click(object sender, EventArgs e)
         {
-            bool IsSuccess = AreFieldsFilled(this);
+            bool IsSuccess = FieldsFilled(this) == 5;
 
             if (!IsSuccess)
             {
@@ -43,18 +43,18 @@ namespace Біржа_товарів.Forms
 
                 string UserData = $"Ім'я: {NameField.Text}, " +
                     $"Прізвище: {SurnameField.Text}, Телефон: {PhoneField.Text}, " +
-                    $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, " +
-                    $"Товари: {DataBasePath + LoginField.Text}Products.txt";
+                    $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, ";
 
                 if (SalesMan.Checked)
                 {
+                    UserData += $"Товари: {SalesmenAddedProducts + LoginField.Text}Products.txt";
                     WriteToDataBase(SalesmenData, UserData);
                 }
                 else
                 {
+                    UserData += $"Товари: {CustomerAddedProducts + LoginField.Text}Products.txt";
                     WriteToDataBase(CustomersData, UserData);
                 }
-
                 ChangeForm<AuthorizationForm>(this);
             }
         }
