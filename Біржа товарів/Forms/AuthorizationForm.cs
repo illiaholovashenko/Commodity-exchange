@@ -1,8 +1,9 @@
 using System.Security.AccessControl;
 using Біржа_товарів.Forms;
 using Біржа_товарів.Models;
-using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Utilities.Validators;
 using static Біржа_товарів.Data.DataAccess;
+using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів
 {

@@ -9,13 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Біржа_товарів.Models;
-using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Models.Product;
+using static Біржа_товарів.Data.DataAccess;
+using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів.Forms
 {
     public partial class MainForm : Form
     {
         internal User user;
+
+        internal LinkedList<Product>? CustomersWishes;
+        internal LinkedList<Product>? SalesmenProducts;
 
         public MainForm(User user)
         {
@@ -27,7 +32,7 @@ namespace Біржа_товарів.Forms
         private void FindProductButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SearchProductForm searchProductForm = new SearchProductForm(user);
+            SearchProductForm searchProductForm = new SearchProductForm(user, CustomersWishes, SalesmenProducts);
             searchProductForm.Show();
         }
 
@@ -47,6 +52,13 @@ namespace Біржа_товарів.Forms
         {
             RankText.Text = user.ClassName;
             MeetingLabel.Text = $"Привіт, {user.FullName}!";
+
+            SalesmenProducts = null;
+            CustomersWishes = null;
+            idCount = 0;
+
+            SalesmenProducts = LoadData(SalesmenAddedProducts);
+            CustomersWishes = LoadData(CustomerAddedProducts);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

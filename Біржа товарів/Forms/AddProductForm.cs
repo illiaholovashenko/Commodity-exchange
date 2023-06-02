@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Біржа_товарів.Models;
-using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Utilities.Validators;
 using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Forms
@@ -93,14 +93,15 @@ namespace Біржа_товарів.Forms
 
         private void AddProductButton_Click(object sender, EventArgs e)
         {
-            bool fieldsFilled = FieldsFilled(this) >= 3;
-
-            if (fieldsFilled)
+            if (!(string.IsNullOrWhiteSpace(ProductNameField.Text)
+                || string.IsNullOrWhiteSpace(ProductAmountField.Text)))
             {
-                Product product = new Product(this);
-                WriteToDataBase(user.ProductsPath, product.GetInfo());
+                string ProductData = $"Назва: {ProductNameField.Text}, " +
+                    $"Ціна: {ProductPriceField.Text}, Кількість: {ProductAmountField.Text}, " +
+                    $"Адреса: {AdressField.Text}, Оплата: {PaymentFormBox.Text}, " +
+                    $"Доставка: {DeliveryConditionBox.Text}, Замітки: {NotesField.Text}";
 
-                user.products.Add(product);
+                WriteToDataBase(user.ProductsPath, ProductData);
 
                 MessageBox.Show("Ви успішно додали товар!");
 
@@ -110,7 +111,7 @@ namespace Біржа_товарів.Forms
             }
             else
             {
-                MainError.Text = "Поля Назва, Ціна та кількість товару мають бути заповнені";
+                MainError.Text = "Поля для назви та кількісті товарів мають бути заповнені";
             }
         }
     }

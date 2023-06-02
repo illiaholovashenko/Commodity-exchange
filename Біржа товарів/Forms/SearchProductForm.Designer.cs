@@ -49,6 +49,7 @@
             AdressError = new Label();
             DeliveryConditionError = new Label();
             NotesError = new Label();
+            MainError = new Label();
             SuspendLayout();
             // 
             // SearcProductLabel
@@ -80,6 +81,7 @@
             SearchProductButton.TabIndex = 24;
             SearchProductButton.Text = "Знайти товар";
             SearchProductButton.UseVisualStyleBackColor = true;
+            SearchProductButton.Click += SearchProductButton_Click;
             // 
             // DeliveryConditionBox
             // 
@@ -265,11 +267,22 @@
             NotesError.Size = new Size(0, 15);
             NotesError.TabIndex = 42;
             // 
+            // MainError
+            // 
+            MainError.AutoSize = true;
+            MainError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MainError.ForeColor = Color.Red;
+            MainError.Location = new Point(74, 563);
+            MainError.Name = "MainError";
+            MainError.Size = new Size(0, 15);
+            MainError.TabIndex = 43;
+            // 
             // SearchProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(434, 651);
+            Controls.Add(MainError);
             Controls.Add(NotesError);
             Controls.Add(DeliveryConditionError);
             Controls.Add(AdressError);
@@ -322,5 +335,6 @@
         private Label AdressError;
         private Label DeliveryConditionError;
         private Label NotesError;
+        private Label MainError;
     }
 }

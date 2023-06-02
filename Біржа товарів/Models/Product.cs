@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Біржа_товарів.Forms;
@@ -9,41 +10,76 @@ namespace Біржа_товарів.Models
 {
     public class Product
     {
+        internal int Id { get; set; }
+        public string? ProductName { get; set; }
+        public int? ProductAmount { get; set; }
+        public int? ProductPrice { get; set; }
+        public string? PaymentForm { get; set; }
+        public string? DeliveryCondition { get; set; }
+        public string? Adress { get; set; }
+        public string? Notes { get; set; }
+        internal static int idCount = 0;
 
-        internal string? Name { get; set; }
-        internal int? Amount { get; set; }
-        internal int? UnitPrice { get; set; }
-        internal string? PaymentForm { get; set; }
-        internal string? DeliveryCondition { get; set; }
-        internal string? Adress { get; set; }
-        internal string? Notes { get; set; }
-
-        public Product(string name, int amount, int price, string paymentForm, 
-            string deliveryCondition, string adress, string notes)
+        public Product(string[] Productprop)
         {
-            Name = name;
-            Amount = amount;
-            UnitPrice = price;
-            PaymentForm = paymentForm;
-            DeliveryCondition = deliveryCondition;
-            Adress = adress;
-            Notes = notes;
+            idCount++;
+            Id = idCount;
+            ProductName = Productprop[0];
+            ProductPrice = Productprop[1] != "" ? int.Parse(Productprop[1]) : 0;
+            ProductAmount = int.Parse(Productprop[2]);
+            Adress = Productprop[3];
+            PaymentForm = Productprop[4];
+            DeliveryCondition = Productprop[5];
+            Notes = Productprop[6];
         }
 
-        public Product(Form form)
+        public static LinkedList<Product> Search(LinkedList<Product> products,
+            Dictionary<string, string> searchParameters)
         {
-            Name = ((TextBox?)form.Controls["ProductNameField"])?.Text;
-            Amount = int.Parse(((TextBox?)form.Controls["ProductAmountField"])?.Text ?? "0");
-            UnitPrice = int.Parse(((TextBox?)form.Controls["ProductPriceField"])?.Text ?? "0");
-            PaymentForm = ((ComboBox?)form.Controls["PaymentFormBox"])?.SelectedItem?.ToString() ?? " ";
-            DeliveryCondition = ((ComboBox?)form.Controls["DeliveryConditionBox"])?.SelectedItem?.ToString() ?? " ";
-            Adress = ((TextBox?)form.Controls["AdressField"])?.Text ?? " ";
-            Notes = ((TextBox?)form.Controls["NotesField"])?.Text ?? " ";
+            LinkedList<Product> foundProducts = new LinkedList<Product>();
+
+            foreach (Product product in products)
+            {
+                bool found = true;
+
+                foreach (var item in searchParameters)
+                {
+                    string productPropertyName = item.Key;
+                    string searchParameterValue = item.Value;
+
+                    var prop = product.GetType().GetProperty(productPropertyName);
+                    var value = prop?.GetValue(product);
+
+                    if (prop != null && prop.Name == "ProductPrice" && value != null && value is IConvertible)
+                    {
+                        int actualValue = Convert.ToInt32(value);
+                        int actualParameterValue = Convert.ToInt32(searchParameterValue);
+
+                        if (actualParameterValue < actualValue)
+                        {
+                            found = false;
+                            break;
+                        }
+                    }
+                    else if (value != null && (value.ToString()?.Contains(searchParameterValue) != true))
+                    { 
+                        found = false;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    foundProducts.AddLast(product);
+                }
+            }
+
+            return foundProducts;
         }
 
         public string GetInfo()
         {
-            return $"Назва: {Name}, Ціна: {UnitPrice}, Кількість: {Amount}, " +
+            return $"Назва: {ProductName}, Ціна: {ProductPrice}, Кількість: {ProductAmount}, " +
                 $"Адреса: {Adress}, Оплата: {PaymentForm}, " +
                 $"Доставка: {DeliveryCondition}, Замітки: {Notes}";
         }

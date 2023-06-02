@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Біржа_товарів.Models;
-using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Utilities.Validators;
+using static Біржа_товарів.Utilities.Utilities;
+using static Біржа_товарів.Models.Product;
+using System.Security.AccessControl;
 
 namespace Біржа_товарів.Forms
 {
@@ -16,11 +19,16 @@ namespace Біржа_товарів.Forms
     {
         User user;
 
-        public SearchProductForm(User user)
+        internal LinkedList<Product>? CustomersWishes;
+        internal LinkedList<Product>? SalesmenProducts;
+
+        public SearchProductForm(User user, LinkedList<Product> wishes, LinkedList<Product> products)
         {
             InitializeComponent();
 
             this.user = user;
+            CustomersWishes = wishes;
+            SalesmenProducts = products;
         }
 
         private void ReturnLabel_Click(object sender, EventArgs e)
@@ -78,6 +86,36 @@ namespace Біржа_товарів.Forms
         private void AdressField_Validated(object sender, EventArgs e)
         {
             AdressError.Text = "";
+        }
+
+        private void SearchProductButton_Click(object sender, EventArgs e)
+        {
+            bool IsSuccess = FieldsFilled(this) >= 1;
+
+            if (IsSuccess)
+            {
+                MainError.Text = "";
+
+                Dictionary<string, string> searchParameters = GetFilledFields(this);
+                LinkedList<Product> products;
+
+                if (user.ClassName == "Продавець")
+                {
+                    products = Search(CustomersWishes, searchParameters);
+                }
+                else
+                {
+                    products = Search(SalesmenProducts, searchParameters);
+                }
+
+                this.Hide();
+                ProductSelectionForm selectionForm = new ProductSelectionForm(user, products);
+                selectionForm.Show();
+            }
+            else
+            {
+                MainError.Text = "Для пошуку має бути заповнено хоча б одне поле";
+            }
         }
     }
 }

@@ -13,15 +13,13 @@ namespace Біржа_товарів.Models
 
         public string FullName { get; set; } = " ";
 
-        protected string Login;
+        internal string Login;
 
         protected string Password;
 
         protected string Telephone;
 
         public string ProductsPath;
-
-        public List<Product> products = new List<Product>();
 
         public User(string[] data) 
         {

@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Біржа_товарів.Validators.Validators;
+using static Біржа_товарів.Utilities.Validators;
 using static Біржа_товарів.Data.DataAccess;
+using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів.Forms
 {

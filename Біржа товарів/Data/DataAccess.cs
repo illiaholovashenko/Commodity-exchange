@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Біржа_товарів.Forms;
+using Біржа_товарів.Models;
+using static Біржа_товарів.Utilities.Validators;
+using static Біржа_товарів.Utilities.Utilities;
+
 
 namespace Біржа_товарів.Data
 {
@@ -36,6 +41,37 @@ namespace Біржа_товарів.Data
                 }
             }
             return null;
+        }
+
+        public static LinkedList<Product> LoadData(string Path) 
+        {
+            LinkedList<Product> list = new LinkedList<Product>();
+            string[] files;
+            
+            try
+            {
+                files = Directory.GetFiles(Path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                files = new string[0];
+            }
+
+            foreach (string filePath in files)
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string? Productline;
+                    while ((Productline = reader.ReadLine()) != null)
+                    {
+                        string[] productProp = GetData(Productline, 7);
+                        Product product = new Product(productProp);
+                        list.AddLast(product);
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }
