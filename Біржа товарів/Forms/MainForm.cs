@@ -52,10 +52,10 @@ namespace Біржа_товарів.Forms
         {
             RankText.Text = user.ClassName;
             MeetingLabel.Text = $"Привіт, {user.FullName}!";
+            Archive.Text = user is Salesman ? "Продані товари" : "Куплені товари";
 
             SalesmenProducts = null;
             CustomersWishes = null;
-            idCount = 0;
 
             SalesmenProducts = LoadData(SalesmenAddedProducts);
             CustomersWishes = LoadData(CustomerAddedProducts);
@@ -69,6 +69,13 @@ namespace Біржа_товарів.Forms
             {
                 ChangeForm<AuthorizationForm>(this);
             }
+        }
+
+        private void Archive_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            ArchiveForm archiveForm = new ArchiveForm(user);
+            archiveForm.Show();
         }
     }
 }

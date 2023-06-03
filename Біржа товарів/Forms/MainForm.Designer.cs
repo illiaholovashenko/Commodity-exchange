@@ -35,6 +35,7 @@
             RankLabel = new Label();
             RankText = new Label();
             MeetingLabel = new Label();
+            Archive = new LinkLabel();
             SuspendLayout();
             // 
             // MainFormLabel
@@ -108,11 +109,21 @@
             MeetingLabel.TabIndex = 6;
             MeetingLabel.Text = "Привіт, ";
             // 
+            // Archive
+            // 
+            Archive.AutoSize = true;
+            Archive.Location = new Point(362, 412);
+            Archive.Name = "Archive";
+            Archive.Size = new Size(0, 15);
+            Archive.TabIndex = 7;
+            Archive.LinkClicked += Archive_LinkClicked;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Archive);
             Controls.Add(MeetingLabel);
             Controls.Add(RankText);
             Controls.Add(RankLabel);
@@ -138,5 +149,6 @@
         private Label RankLabel;
         public Label RankText;
         public Label MeetingLabel;
+        private LinkLabel Archive;
     }
 }

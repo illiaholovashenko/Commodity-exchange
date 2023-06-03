@@ -32,12 +32,13 @@
             PurchaseFormLabel = new Label();
             BuyButton = new Button();
             PriceLabel = new Label();
-            TotalPriceLabel = new Label();
             ProductNameLabel = new Label();
             ProductAmount = new Label();
-            numericUpDown1 = new NumericUpDown();
+            Amount = new NumericUpDown();
             ProductName = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            TotalPrice = new Label();
+            AmountError = new Label();
+            ((System.ComponentModel.ISupportInitialize)Amount).BeginInit();
             SuspendLayout();
             // 
             // ReturnLabel
@@ -50,6 +51,7 @@
             ReturnLabel.Size = new Size(33, 29);
             ReturnLabel.TabIndex = 2;
             ReturnLabel.Text = "<";
+            ReturnLabel.Click += ReturnLabel_Click;
             // 
             // PurchaseFormLabel
             // 
@@ -71,6 +73,7 @@
             BuyButton.TabIndex = 4;
             BuyButton.Text = "Купити";
             BuyButton.UseVisualStyleBackColor = true;
+            BuyButton.Click += BuyButton_Click;
             // 
             // PriceLabel
             // 
@@ -78,20 +81,9 @@
             PriceLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             PriceLabel.Location = new Point(35, 280);
             PriceLabel.Name = "PriceLabel";
-            PriceLabel.Size = new Size(246, 25);
+            PriceLabel.Size = new Size(170, 25);
             PriceLabel.TabIndex = 5;
-            PriceLabel.Text = "Загальна вартість покупки:";
-            // 
-            // TotalPriceLabel
-            // 
-            TotalPriceLabel.AutoSize = true;
-            TotalPriceLabel.Enabled = false;
-            TotalPriceLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
-            TotalPriceLabel.Location = new Point(287, 280);
-            TotalPriceLabel.Name = "TotalPriceLabel";
-            TotalPriceLabel.Size = new Size(22, 25);
-            TotalPriceLabel.TabIndex = 7;
-            TotalPriceLabel.Text = "  ";
+            PriceLabel.Text = "Загальна вартість:";
             // 
             // ProductNameLabel
             // 
@@ -113,36 +105,56 @@
             ProductAmount.TabIndex = 9;
             ProductAmount.Text = "Кількість:";
             // 
-            // numericUpDown1
+            // Amount
             // 
-            numericUpDown1.Cursor = Cursors.Hand;
-            numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(134, 186);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(53, 27);
-            numericUpDown1.TabIndex = 10;
+            Amount.Cursor = Cursors.Hand;
+            Amount.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Amount.Location = new Point(134, 186);
+            Amount.Name = "Amount";
+            Amount.Size = new Size(53, 27);
+            Amount.TabIndex = 10;
+            Amount.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            Amount.ValueChanged += Amount_ValueChanged;
             // 
             // ProductName
             // 
             ProductName.AutoSize = true;
-            ProductName.Enabled = false;
             ProductName.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
             ProductName.Location = new Point(172, 141);
             ProductName.Name = "ProductName";
-            ProductName.Size = new Size(22, 25);
+            ProductName.Size = new Size(0, 25);
             ProductName.TabIndex = 11;
-            ProductName.Text = "  ";
+            // 
+            // TotalPrice
+            // 
+            TotalPrice.AutoSize = true;
+            TotalPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
+            TotalPrice.Location = new Point(211, 280);
+            TotalPrice.Name = "TotalPrice";
+            TotalPrice.Size = new Size(0, 25);
+            TotalPrice.TabIndex = 12;
+            // 
+            // AmountError
+            // 
+            AmountError.AutoSize = true;
+            AmountError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AmountError.ForeColor = Color.Red;
+            AmountError.Location = new Point(35, 211);
+            AmountError.Name = "AmountError";
+            AmountError.Size = new Size(0, 15);
+            AmountError.TabIndex = 44;
             // 
             // PurchaseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(684, 401);
+            Controls.Add(AmountError);
+            Controls.Add(TotalPrice);
             Controls.Add(ProductName);
-            Controls.Add(numericUpDown1);
+            Controls.Add(Amount);
             Controls.Add(ProductAmount);
             Controls.Add(ProductNameLabel);
-            Controls.Add(TotalPriceLabel);
             Controls.Add(PriceLabel);
             Controls.Add(BuyButton);
             Controls.Add(PurchaseFormLabel);
@@ -151,7 +163,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
             FormClosing += PurchaseForm_FormClosing;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            Load += PurchaseForm_Load;
+            ((System.ComponentModel.ISupportInitialize)Amount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,10 +175,11 @@
         private Label PurchaseFormLabel;
         private Button BuyButton;
         private Label PriceLabel;
-        private Label TotalPriceLabel;
         private Label ProductNameLabel;
         private Label ProductAmount;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown Amount;
         private Label ProductName;
+        private Label TotalPrice;
+        private Label AmountError;
     }
 }

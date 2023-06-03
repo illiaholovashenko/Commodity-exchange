@@ -345,6 +345,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
             FormClosing += AddProductForm_FormClosing;
+            Load += AddProductForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

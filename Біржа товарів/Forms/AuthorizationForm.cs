@@ -57,16 +57,16 @@ namespace Біржа_товарів
                 MainError.Text = "";
 
                 string? user;
-                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text},"));
-                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text},"));
+                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text};"));
+                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text};"));
                 
                 if (isSalesman)
                 {
-                    user = GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text},");
+                    user = GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text};");
 
-                    if (user.Contains($"Пароль: {PasswordField.Text},"))
+                    if (user.Contains($"Пароль: {PasswordField.Text};"))
                     {
-                        Salesman salesman = new Salesman(GetData(user, 6));
+                        Salesman salesman = new Salesman(GetData(user, 7));
 
                         this.Hide();
                         MainForm mainForm = new MainForm(salesman);
@@ -79,11 +79,11 @@ namespace Біржа_товарів
                 }
                 else if (isCustomer)
                 {
-                    user = GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text},");
+                    user = GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text};");
 
-                    if (user.Contains($"Пароль: {PasswordField.Text},"))
+                    if (user.Contains($"Пароль: {PasswordField.Text};"))
                     {
-                        Customer customer = new Customer(GetData(user, 6));
+                        Customer customer = new Customer(GetData(user, 7));
 
                         this.Hide();
                         MainForm mainForm = new MainForm(customer);

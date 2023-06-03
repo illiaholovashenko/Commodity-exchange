@@ -17,6 +17,7 @@ namespace Біржа_товарів.Forms
     {
         User user;
 
+        static int Id = 1;
         public AddProductForm(User user)
         {
             InitializeComponent();
@@ -96,10 +97,11 @@ namespace Біржа_товарів.Forms
             if (!(string.IsNullOrWhiteSpace(ProductNameField.Text)
                 || string.IsNullOrWhiteSpace(ProductAmountField.Text)))
             {
-                string ProductData = $"Назва: {ProductNameField.Text}, " +
-                    $"Ціна: {ProductPriceField.Text}, Кількість: {ProductAmountField.Text}, " +
-                    $"Адреса: {AdressField.Text}, Оплата: {PaymentFormBox.Text}, " +
-                    $"Доставка: {DeliveryConditionBox.Text}, Замітки: {NotesField.Text}";
+                string ProductData = $"Id: {Id}; Назва: {ProductNameField.Text}; " +
+                    $"Ціна: {ProductPriceField.Text}; Кількість: {ProductAmountField.Text}; " +
+                    $"Адреса: {AdressField.Text}; Оплата: {PaymentFormBox.Text}; " +
+                    $"Доставка: {DeliveryConditionBox.Text}; Замітки: {NotesField.Text}; " +
+                    $"Власник: {user.Login}";
 
                 WriteToDataBase(user.ProductsPath, ProductData);
 
@@ -112,6 +114,16 @@ namespace Біржа_товарів.Forms
             else
             {
                 MainError.Text = "Поля для назви та кількісті товарів мають бути заповнені";
+            }
+        }
+
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+            if (GetItemById(CustomerAddedProducts, $"Id: {Id};") != null
+                || GetItemById(SalesmenAddedProducts, $"Id: {Id};") != null)
+            {
+                Id++;
+                AddProductForm_Load(sender, e);
             }
         }
     }

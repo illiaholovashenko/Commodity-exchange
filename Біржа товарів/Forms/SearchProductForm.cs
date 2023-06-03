@@ -97,9 +97,9 @@ namespace Біржа_товарів.Forms
                 MainError.Text = "";
 
                 Dictionary<string, string> searchParameters = GetFilledFields(this);
-                LinkedList<Product> products;
+                List<Product> products;
 
-                if (user.ClassName == "Продавець")
+                if (user is Salesman)
                 {
                     products = Search(CustomersWishes, searchParameters);
                 }

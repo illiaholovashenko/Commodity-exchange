@@ -15,8 +15,8 @@ namespace Біржа_товарів.Forms
     {
         User user;
 
-        LinkedList<Product> foundProducts;
-        public ProductSelectionForm(User user, LinkedList<Product> products)
+        List<Product> foundProducts;
+        public ProductSelectionForm(User user, List<Product> products)
         {
             InitializeComponent();
             this.user = user;
@@ -25,16 +25,15 @@ namespace Біржа_товарів.Forms
 
         private void ProductSelectionForm_Load(object sender, EventArgs e)
         {
-            if (foundProducts == null)
+            PurchaseButton.Text = user is Salesman ? "Продати" : "Купити";
+            if (foundProducts.Count == 0)
             {
-                foundProductList.Text = "Таких товарів не знайдено";
+                foundProductList.Items.Add("Таких товарів не знайдено");
+                foundProductList.Enabled = false;
             }
             else
             {
-                foreach (Product product in foundProducts)
-                {
-                    foundProductList.Items.Add(product.GetInfo());
-                }
+                foundProductList.DataSource = foundProducts;
             }
         }
 
@@ -47,6 +46,22 @@ namespace Біржа_товарів.Forms
                 this.Hide();
                 MainForm mainForm = new MainForm(user);
                 mainForm.Show();
+            }
+        }
+
+        private void PurchaseButton_Click(object sender, EventArgs e)
+        {
+            if (foundProductList.SelectedItem != null)
+            {
+                Product selectedProduct = (Product)foundProductList.SelectedItem;
+
+                this.Hide();
+                PurchaseForm purchaseForm = new PurchaseForm(user, selectedProduct, foundProducts);
+                purchaseForm.Show();
+            }
+            else
+            {
+                PurchaseError.Text = "Оберіть товар для покупки";
             }
         }
     }

@@ -1,1 +1,2 @@
-﻿Ім'я: Олексій, Прізвище: Теверя, Телефон: +380-45-902-2035, Логін: leha100, Пароль: 12345678, Товари: ..\..\..\DataBase\CustomerAddedProduct\leha100Products.txt
+﻿Ім'я: Сергій; Прізвище: Бобич; Телефон: +380-19-012-8743; Логін: serga; Пароль: bobbobbob; Товари: ..\..\..\DataBase\CustomersAddedProducts\sergaProducts.txt; Архів: ..\..\..\DataBase\PurchasesArchive\sergaArchive.txt
+Ім'я: Михайло; Прізвище: Торговець; Телефон: +380-29-218-1901; Логін: mihamiha; Пароль: 11mimimiha; Товари: ..\..\..\DataBase\CustomersAddedProducts\mihamihaProducts.txt; Архів: ..\..\..\DataBase\PurchasesArchive\mihamihaArchive.txt

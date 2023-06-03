@@ -42,18 +42,20 @@ namespace Біржа_товарів.Forms
             {
                 MainError.Text = "";
 
-                string UserData = $"Ім'я: {NameField.Text}, " +
-                    $"Прізвище: {SurnameField.Text}, Телефон: {PhoneField.Text}, " +
-                    $"Логін: {LoginField.Text}, Пароль: {PasswordField.Text}, ";
+                string UserData = $"Ім'я: {NameField.Text}; " +
+                    $"Прізвище: {SurnameField.Text}; Телефон: {PhoneField.Text}; " +
+                    $"Логін: {LoginField.Text}; Пароль: {PasswordField.Text}; ";
 
                 if (SalesMan.Checked)
                 {
-                    UserData += $"Товари: {SalesmenAddedProducts + LoginField.Text}Products.txt";
+                    UserData += $"Товари: {SalesmenAddedProducts + LoginField.Text}Products.txt; " +
+                        $"Архів: {SaleArchive + LoginField.Text}Archive.txt";
                     WriteToDataBase(SalesmenData, UserData);
                 }
                 else
                 {
-                    UserData += $"Товари: {CustomerAddedProducts + LoginField.Text}Products.txt";
+                    UserData += $"Товари: {CustomerAddedProducts + LoginField.Text}Products.txt; " +
+                        $"Архів: {PurchasesArchive + LoginField.Text}Archive.txt";
                     WriteToDataBase(CustomersData, UserData);
                 }
                 ChangeForm<AuthorizationForm>(this);

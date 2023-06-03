@@ -69,7 +69,7 @@ namespace Біржа_товарів.Utilities
         {
             string[] result = new string[fieldsCount];
 
-            string[] DataPairs = Data.Split(", ");
+            string[] DataPairs = Data.Split("; ");
 
             for (int i = 0; i < DataPairs.Length; i++)
             {

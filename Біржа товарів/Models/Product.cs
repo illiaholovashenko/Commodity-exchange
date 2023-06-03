@@ -18,25 +18,25 @@ namespace Біржа_товарів.Models
         public string? DeliveryCondition { get; set; }
         public string? Adress { get; set; }
         public string? Notes { get; set; }
-        internal static int idCount = 0;
+        public string? OwnerLogin { get; set; }
 
         public Product(string[] Productprop)
         {
-            idCount++;
-            Id = idCount;
-            ProductName = Productprop[0];
-            ProductPrice = Productprop[1] != "" ? int.Parse(Productprop[1]) : 0;
-            ProductAmount = int.Parse(Productprop[2]);
-            Adress = Productprop[3];
-            PaymentForm = Productprop[4];
-            DeliveryCondition = Productprop[5];
-            Notes = Productprop[6];
+            Id = int.Parse(Productprop[0]);
+            ProductName = Productprop[1];
+            ProductPrice = Productprop[2] != "" ? int.Parse(Productprop[2]) : 0;
+            ProductAmount = int.Parse(Productprop[3]);
+            Adress = Productprop[4];
+            PaymentForm = Productprop[5];
+            DeliveryCondition = Productprop[6];
+            Notes = Productprop[7];
+            OwnerLogin = Productprop[8];
         }
 
-        public static LinkedList<Product> Search(LinkedList<Product> products,
+        public static List<Product> Search(LinkedList<Product> products,
             Dictionary<string, string> searchParameters)
         {
-            LinkedList<Product> foundProducts = new LinkedList<Product>();
+            List<Product> foundProducts = new List<Product>();
 
             foreach (Product product in products)
             {
@@ -61,7 +61,7 @@ namespace Біржа_товарів.Models
                             break;
                         }
                     }
-                    else if (value != null && (value.ToString()?.Contains(searchParameterValue) != true))
+                    else if (value != null && (value.ToString().ToLower()?.Contains(searchParameterValue.ToLower()) != true))
                     { 
                         found = false;
                         break;
@@ -70,18 +70,21 @@ namespace Біржа_товарів.Models
 
                 if (found)
                 {
-                    foundProducts.AddLast(product);
+                    foundProducts.Add(product);
                 }
             }
 
             return foundProducts;
         }
 
+        public override string ToString()
+        {
+            return GetInfo();
+        }
+
         public string GetInfo()
         {
-            return $"Назва: {ProductName}, Ціна: {ProductPrice}, Кількість: {ProductAmount}, " +
-                $"Адреса: {Adress}, Оплата: {PaymentForm}, " +
-                $"Доставка: {DeliveryCondition}, Замітки: {Notes}";
+            return $"Назва: {ProductName}; Ціна: {ProductPrice} грн; Кількість: {ProductAmount}";
         }
     }
 }
