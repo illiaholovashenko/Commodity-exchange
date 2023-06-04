@@ -7,6 +7,7 @@ using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів
 {
+    // Клас, що реалізує форму для входу в обліковий запис користувача
     public partial class AuthorizationForm : Form
     {
         public AuthorizationForm()
@@ -14,12 +15,14 @@ namespace Біржа_товарів
             InitializeComponent();
         }
 
-        private void ToRegisterWindow_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ToRegisterWindow_LinkClicked(object sender, 
+            LinkLabelLinkClickedEventArgs e)
         {
             ChangeForm<RegistrationForm>(this);
         }
 
-        private void AuthorizationForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void AuthorizationForm_FormClosing(object sender, 
+            FormClosingEventArgs e)
         {
             Application.Exit();
         }
@@ -34,7 +37,8 @@ namespace Біржа_товарів
             LoginError.Text = "";
         }
 
-        private void PasswordField_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void PasswordField_Validating(object sender, 
+            System.ComponentModel.CancelEventArgs e)
         {
             ValidateField(PasswordField, PasswordError, e, IsPasswordValid);
         }
@@ -57,8 +61,10 @@ namespace Біржа_товарів
                 MainError.Text = "";
 
                 string? user;
-                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text};"));
-                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text};"));
+                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, 
+                    $"Логін: {LoginField.Text};"));
+                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, 
+                    $"Логін: {LoginField.Text};"));
                 
                 if (isSalesman)
                 {
@@ -72,7 +78,7 @@ namespace Біржа_товарів
                         MainForm mainForm = new MainForm(salesman);
                         mainForm.Show();
                     }
-                    else 
+                    else
                     {
                         PasswordError.Text = "Пароль не правльний";
                     }

@@ -15,6 +15,7 @@ using System.Security.AccessControl;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує форму для пошуку товару продавцем або покупцем
     public partial class SearchProductForm : Form
     {
         User user;
@@ -22,7 +23,8 @@ namespace Біржа_товарів.Forms
         internal LinkedList<Product>? CustomersWishes;
         internal LinkedList<Product>? SalesmenProducts;
 
-        public SearchProductForm(User user, LinkedList<Product> wishes, LinkedList<Product> products)
+        public SearchProductForm(User user, LinkedList<Product> wishes, 
+            LinkedList<Product> products)
         {
             InitializeComponent();
 
@@ -33,14 +35,8 @@ namespace Біржа_товарів.Forms
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-                MainForm mainForm = new MainForm(user);
-                mainForm.Show();
-            }
+            ConfirmOperation(this, user, 
+                "Ви підтверджуєте завершення цієї операції?");
         }
 
         private void SearchProductForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,7 +56,8 @@ namespace Біржа_товарів.Forms
 
         private void ProductPriceField_Validating(object sender, CancelEventArgs e)
         {
-            ValidateField(ProductPriceField, ProductPriceError, e, IsProductPriceValid);
+            ValidateField(ProductPriceField, 
+                ProductPriceError, e, IsProductPriceValid);
         }
 
         private void ProductPriceField_Validated(object sender, EventArgs e)
@@ -99,14 +96,8 @@ namespace Біржа_товарів.Forms
                 Dictionary<string, string> searchParameters = GetFilledFields(this);
                 List<Product> products;
 
-                if (user is Salesman)
-                {
-                    products = Search(CustomersWishes, searchParameters);
-                }
-                else
-                {
-                    products = Search(SalesmenProducts, searchParameters);
-                }
+                products = user is Salesman ? Search(CustomersWishes,
+                    searchParameters) : Search(SalesmenProducts, searchParameters);
 
                 this.Hide();
                 ProductSelectionForm selectionForm = new ProductSelectionForm(user, products);

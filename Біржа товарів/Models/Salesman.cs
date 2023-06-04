@@ -7,6 +7,7 @@ using Біржа_товарів.Forms;
 
 namespace Біржа_товарів.Models
 {
+    // Клас продавця, успадковується від користувача
     internal class Salesman: User
     {
         public override string ClassName 
@@ -18,11 +19,5 @@ namespace Біржа_товарів.Models
         }
 
         public Salesman(string[] data):base(data) { }
-
-        public override void SetMeetingText(MainForm mainForm)
-        {
-            mainForm.RankText.Text = ClassName;
-            mainForm.MeetingLabel.Text = $"Привіт, {FullName}!";
-        }
     }
 }

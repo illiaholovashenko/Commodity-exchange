@@ -13,6 +13,7 @@ using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує форму для купівлі-продажу товару
     public partial class PurchaseForm : Form
     {
         User user;
@@ -29,7 +30,8 @@ namespace Біржа_товарів.Forms
             this.foundedProducts = foundedProducts;
         }
 
-        private void PurchaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void PurchaseForm_FormClosing(object sender, 
+            FormClosingEventArgs e)
         {
             Application.Exit();
         }
@@ -49,12 +51,14 @@ namespace Біржа_товарів.Forms
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", 
+                "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
                 this.Hide();
-                ProductSelectionForm selectionForm = new ProductSelectionForm(user, foundedProducts);
+                ProductSelectionForm selectionForm = new ProductSelectionForm(user, 
+                    foundedProducts);
                 selectionForm.Show();
             }
         }
@@ -73,24 +77,25 @@ namespace Біржа_товарів.Forms
                 WriteToDataBase(user.Archive, PurchaseData);
 
                 string? owner = GetItemFromDatabase(user is Salesman ?
-                CustomersData : SalesmenData, $"Логін: {SelectedProduct.OwnerLogin};");
+                    CustomersData : SalesmenData, $"Логін: {SelectedProduct.OwnerLogin};");
+
                 string ownerArchivePath = owner.Split("Архів: ")[1];
 
                 WriteToDataBase(ownerArchivePath, PurchaseData);
 
                 if (Amount.Value == SelectedProduct.ProductAmount)
                 {
-                    DeleteLineFromFile(user is Salesman ?
-                    CustomerAddedProducts : SalesmenAddedProducts, line);
+                    ChangeLineInDataBase(user is Salesman ?
+                        CustomerAddedProducts : SalesmenAddedProducts, null, null, line);
                 }
                 else
                 {
                     string newValue = $"Кількість: {SelectedProduct.ProductAmount - Amount.Value}";
 
-                    string newLine = Regex.Replace(line, @"Кількість:s+\d+", newValue);
+                    string newLine = Regex.Replace(line, @"Кількість:\s+\d+", newValue);
 
                     ChangeLineInDataBase(user is Salesman ?
-                        CustomerAddedProducts : SalesmenAddedProducts, line, newLine);
+                        CustomerAddedProducts : SalesmenAddedProducts, line, newLine, null);
                 }
 
                 this.Hide();

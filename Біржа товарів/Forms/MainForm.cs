@@ -15,6 +15,8 @@ using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує головну форму з якої користувач може
+    // додати, знайти товари або переглянути куплені/продані товари 
     public partial class MainForm : Form
     {
         internal User user;
@@ -32,7 +34,8 @@ namespace Біржа_товарів.Forms
         private void FindProductButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SearchProductForm searchProductForm = new SearchProductForm(user, CustomersWishes, SalesmenProducts);
+            SearchProductForm searchProductForm = new SearchProductForm(user, 
+                CustomersWishes, SalesmenProducts);
             searchProductForm.Show();
         }
 

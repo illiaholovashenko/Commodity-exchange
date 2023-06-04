@@ -12,10 +12,10 @@ using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує форму для перегляду історії купівель/продаж
     public partial class ArchiveForm : Form
     {
         User user;
-        List<string> Archive;
 
         public ArchiveForm(User user)
         {

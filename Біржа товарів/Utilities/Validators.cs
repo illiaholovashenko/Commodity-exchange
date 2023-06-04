@@ -12,8 +12,13 @@ using static Біржа_товарів.Data.DataAccess;
 
 namespace Біржа_товарів.Utilities
 {
+    // Статичний клас, що реалізує методи для перевірки введених користувачем даних
     public static class Validators
     {
+        // Основний метод для перевірки даних
+        // при успішній перевірці закінчує процес валідації
+        // при невдалій показує помилку користувача при введені
+        // запрошує повторити ввід
         public static void ValidateField(TextBox textField, Label errorLabel, 
             CancelEventArgs e, FieldValidationDelegate fieldValidationDelegate)
         {
@@ -27,6 +32,7 @@ namespace Біржа_товарів.Utilities
             }
         }
 
+        // Основний метод для перевірки наявності введеного тексту в базі данних 
         public static void AvailabilityCheck(TextBox textField, Label errorLabel,
             string FieldName, CancelEventArgs e, IsAvailableDelegate isAvailableDelegate)
         {
@@ -40,6 +46,7 @@ namespace Біржа_товарів.Utilities
             }
         }
 
+        // Метод для перевірки імені та прізвища користувача
         public static bool IsFieldValid(string Name, out string ErrorMessage)
         {
             return HasLetter(Name, out ErrorMessage)
@@ -49,6 +56,7 @@ namespace Біржа_товарів.Utilities
                 && IsFirstLetterCapital(Name, out ErrorMessage);
         }
 
+        // Метод для перевірки правильного формату номера
         public static bool IsNumberValid(string Name, out string ErrorMessage)
         {
             return HasLetter(Name, out ErrorMessage)
@@ -56,6 +64,7 @@ namespace Біржа_товарів.Utilities
                 new Regex(@"^\+380-\d{2}-\d{3}-\d{4}$"), "Неправильний формат номера");
         }
 
+        // Метод для перевірки логіну
         public static bool IsLoginValid(string Name, out string ErrorMessage)
         {
             return HasLetter(Name, out ErrorMessage)
@@ -64,6 +73,7 @@ namespace Біржа_товарів.Utilities
                 "Поле має має містити латинські літери або цифри");
         }
 
+        // Метод для перевірки пароля
         public static bool IsPasswordValid(string Name, out string ErrorMessage)
         {
             return HasLetter(Name, out ErrorMessage)
@@ -73,18 +83,21 @@ namespace Біржа_товарів.Utilities
                 && IsEnoughLetter(Name, out ErrorMessage);
         }
 
+        // Метод для перевірки імені товара
         public static bool IsProductNameValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, 
                 new Regex(@"^[\p{L}\d\s]+$"), "Поле має містити літери або цифри", IsRightRegex);
         }
 
+        // Метод для перевірки вартості та кількості товарів
         public static bool IsProductPriceValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, 
                 new Regex(@"^(?!0+$)\d+$"), "Поле має містити числа більші за нуль", IsRightRegex);
         }
 
+        // Метод для перевірки коректного вводу адреси
         public static bool IsAdressValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, 
@@ -92,6 +105,7 @@ namespace Біржа_товарів.Utilities
                 "Введіть аресу у форматі: Країна, Індекс, Місто, Вулиця Номер", IsRightRegex);
         }
 
+        // Метод для перевірки наявності тексту в базі даних
         public static bool IsAvailable(string FieldName, string Name, out string ErrorMessage)
         {
             if ((GetItemFromDatabase(CustomersData, $"{FieldName}: {Name},") == null) 

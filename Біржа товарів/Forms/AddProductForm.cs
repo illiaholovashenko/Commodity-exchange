@@ -10,14 +10,16 @@ using System.Windows.Forms;
 using Біржа_товарів.Models;
 using static Біржа_товарів.Utilities.Validators;
 using static Біржа_товарів.Data.DataAccess;
+using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує форму для додавання товару продавцем або покупцем
     public partial class AddProductForm : Form
     {
         User user;
-
         static int Id = 1;
+
         public AddProductForm(User user)
         {
             InitializeComponent();
@@ -32,14 +34,7 @@ namespace Біржа_товарів.Forms
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-                MainForm mainForm = new MainForm(user);
-                mainForm.Show();
-            }
+            ConfirmOperation(this, user, "Ви підтверджуєте завершення цієї операції?");
         }
 
         private void ProductNameField_Validating(object sender, CancelEventArgs e)

@@ -13,6 +13,7 @@ using static Біржа_товарів.Utilities.Utilities;
 
 namespace Біржа_товарів.Forms
 {
+    // Клас, що реалізує форму для реєстрації користувача як продавця або покупця
     public partial class RegistrationForm : Form
     {
         public RegistrationForm()
@@ -25,7 +26,8 @@ namespace Біржа_товарів.Forms
             Application.Exit();
         }
 
-        private void ToAuthorizationFormLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ToAuthorizationFormLink_LinkClicked(object sender, 
+            LinkLabelLinkClickedEventArgs e)
         {
             ChangeForm<AuthorizationForm>(this);
         }

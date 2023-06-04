@@ -4,11 +4,15 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Біржа_товарів.Forms;
+using Біржа_товарів.Models;
 
 namespace Біржа_товарів.Utilities
 {
+    // Статичний клас для допоміжних методів
     internal static class Utilities
     {
+        // Метод який повертає кількість заповнених полів
         public static int FieldsFilled(Form form)
         {
             int counter = 0;
@@ -33,6 +37,7 @@ namespace Біржа_товарів.Utilities
             return counter;
         }
 
+        // Метод який повертає словник<поле, значення> заповнених полів
         public static Dictionary<string, string> GetFilledFields(Form form)
         {
             Dictionary<string, string> filledFields = new Dictionary<string, string>();
@@ -58,6 +63,7 @@ namespace Біржа_товарів.Utilities
             return filledFields;
         }
 
+        // Метод для заміни форми конструктор якої не потребує параметрів
         public static void ChangeForm<T>(Form thisForm) where T : Form, new()
         {
             thisForm.Hide();
@@ -65,6 +71,21 @@ namespace Біржа_товарів.Utilities
             newForm.Show();
         }
 
+        // Метод для виклику спливаючого вікна підтвердження
+        public static void ConfirmOperation(Form form, User user, string text)
+        {
+            DialogResult result = MessageBox.Show(text, 
+                "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                form.Hide();
+                MainForm mainForm = new MainForm(user);
+                mainForm.Show();
+            }
+        }
+
+        // Метод, що повертає масив значень полів класів User або Product
         public static string[] GetData(string Data, int fieldsCount)
         {
             string[] result = new string[fieldsCount];

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,21 +8,22 @@ using Біржа_товарів.Forms;
 
 namespace Біржа_товарів.Models
 {
+    // Абстрактний клас реалізує поля та конструктор
+    // для продавців та покупців
     public abstract class User
     {
-        public abstract string ClassName { get; }
+        public string FullName;
 
-        public string FullName { get; set; } = " ";
+        public string ProductsPath;
 
-        internal string Login;
+        public string Archive;
+
+        public string Login;
 
         protected string Password;
 
         protected string Telephone;
 
-        public string ProductsPath;
-
-        public string Archive;
 
         public User(string[] data) 
         {
@@ -33,10 +35,6 @@ namespace Біржа_товарів.Models
             Archive = data[6];
         }
 
-        public virtual void SetMeetingText(MainForm mainForm)
-        {
-            mainForm.RankText.Text = ClassName;
-            mainForm.MeetingLabel.Text = $"Привіт, {FullName}!";
-        }
+        public abstract string ClassName { get; }
     }
 }
