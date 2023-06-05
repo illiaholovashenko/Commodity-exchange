@@ -32,6 +32,12 @@ namespace Біржа_товарів.Forms
             ArchivePath += user.Login + "Archive.txt";
 
             ArchiveList.DataSource = LoadArchive(ArchivePath);
+
+            if (ArchiveList.Items.Count == 0)
+            {
+                ArchiveList.Items.Add(user is Salesman ?
+                    "Ви не продали жодного товару" : "Ви не купили жодного товару");
+            }
         }
 
         private void ReturnLabel_Click(object sender, EventArgs e)
@@ -39,6 +45,11 @@ namespace Біржа_товарів.Forms
             this.Hide();
             MainForm mainForm = new MainForm(user);
             mainForm.Show();
+        }
+
+        private void ArchiveForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

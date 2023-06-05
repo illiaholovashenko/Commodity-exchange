@@ -88,7 +88,7 @@
             // ProductAmountField
             // 
             ProductAmountField.Location = new Point(294, 201);
-            ProductAmountField.MaxLength = 5;
+            ProductAmountField.MaxLength = 6;
             ProductAmountField.Name = "ProductAmountField";
             ProductAmountField.Size = new Size(115, 23);
             ProductAmountField.TabIndex = 22;
@@ -192,7 +192,7 @@
             // ProductPriceField
             // 
             ProductPriceField.Location = new Point(35, 201);
-            ProductPriceField.MaxLength = 100;
+            ProductPriceField.MaxLength = 9;
             ProductPriceField.Name = "ProductPriceField";
             ProductPriceField.Size = new Size(215, 23);
             ProductPriceField.TabIndex = 26;
@@ -293,12 +293,11 @@
             // 
             // AmountError
             // 
-            AmountError.AutoSize = true;
             AmountError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             AmountError.ForeColor = Color.Red;
             AmountError.Location = new Point(294, 227);
             AmountError.Name = "AmountError";
-            AmountError.Size = new Size(0, 15);
+            AmountError.Size = new Size(163, 38);
             AmountError.TabIndex = 45;
             // 
             // MainError

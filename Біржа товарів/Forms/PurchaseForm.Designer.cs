@@ -35,7 +35,7 @@
             ProductNameLabel = new Label();
             ProductAmount = new Label();
             Amount = new NumericUpDown();
-            ProductName = new Label();
+            ProductNameField = new Label();
             TotalPrice = new Label();
             AmountError = new Label();
             ((System.ComponentModel.ISupportInitialize)Amount).BeginInit();
@@ -118,12 +118,12 @@
             // 
             // ProductName
             // 
-            ProductName.AutoSize = true;
-            ProductName.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
-            ProductName.Location = new Point(172, 141);
-            ProductName.Name = "ProductName";
-            ProductName.Size = new Size(0, 25);
-            ProductName.TabIndex = 11;
+            ProductNameField.AutoSize = true;
+            ProductNameField.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
+            ProductNameField.Location = new Point(172, 141);
+            ProductNameField.Name = "ProductName";
+            ProductNameField.Size = new Size(0, 25);
+            ProductNameField.TabIndex = 11;
             // 
             // TotalPrice
             // 
@@ -151,7 +151,7 @@
             ClientSize = new Size(684, 401);
             Controls.Add(AmountError);
             Controls.Add(TotalPrice);
-            Controls.Add(ProductName);
+            Controls.Add(ProductNameField);
             Controls.Add(Amount);
             Controls.Add(ProductAmount);
             Controls.Add(ProductNameLabel);
@@ -178,7 +178,7 @@
         private Label ProductNameLabel;
         private Label ProductAmount;
         private NumericUpDown Amount;
-        private Label ProductName;
+        private Label ProductNameField;
         private Label TotalPrice;
         private Label AmountError;
     }

@@ -52,7 +52,7 @@ namespace Біржа_товарів.Forms
                 Product selectedProduct = (Product)foundProductList.SelectedItem;
 
                 this.Hide();
-                PurchaseForm purchaseForm = new PurchaseForm(user, 
+                PurchaseForm purchaseForm = new PurchaseForm(user,
                     selectedProduct, foundProducts);
                 purchaseForm.Show();
             }
@@ -60,6 +60,11 @@ namespace Біржа_товарів.Forms
             {
                 PurchaseError.Text = "Оберіть товар для покупки";
             }
+        }
+
+        private void ProductSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

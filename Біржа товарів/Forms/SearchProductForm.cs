@@ -20,10 +20,10 @@ namespace Біржа_товарів.Forms
     {
         User user;
 
-        internal LinkedList<Product>? CustomersWishes;
-        internal LinkedList<Product>? SalesmenProducts;
+        internal LinkedList<Product> CustomersWishes;
+        internal LinkedList<Product> SalesmenProducts;
 
-        public SearchProductForm(User user, LinkedList<Product> wishes, 
+        public SearchProductForm(User user, LinkedList<Product> wishes,
             LinkedList<Product> products)
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace Біржа_товарів.Forms
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            ConfirmOperation(this, user, 
+            ConfirmOperation(this, user,
                 "Ви підтверджуєте завершення цієї операції?");
         }
 
@@ -56,7 +56,7 @@ namespace Біржа_товарів.Forms
 
         private void ProductPriceField_Validating(object sender, CancelEventArgs e)
         {
-            ValidateField(ProductPriceField, 
+            ValidateField(ProductPriceField,
                 ProductPriceError, e, IsProductPriceValid);
         }
 

@@ -59,15 +59,5 @@ namespace Біржа_товарів.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ReturnImage {
-            get {
-                object obj = ResourceManager.GetObject("ReturnImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

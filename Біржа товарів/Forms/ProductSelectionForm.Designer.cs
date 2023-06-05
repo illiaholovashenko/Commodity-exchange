@@ -100,6 +100,7 @@
             Name = "ProductSelectionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductSelectionForm";
+            FormClosing += ProductSelectionForm_FormClosing;
             Load += ProductSelectionForm_Load;
             ResumeLayout(false);
             PerformLayout();

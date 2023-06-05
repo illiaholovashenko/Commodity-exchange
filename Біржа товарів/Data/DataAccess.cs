@@ -31,7 +31,7 @@ namespace Біржа_товарів.Data
             }
         }
 
-        // Метод для отримання строки данних з файлу за унікальним параметром
+        // Метод для отримання рядка данних з файлу за унікальним параметром
         public static string? GetItemFromDatabase(string path, 
             string FullLogOrPhoneField)
         {
@@ -50,28 +50,29 @@ namespace Біржа_товарів.Data
             return null;
         }
 
-        // Метод який зчитує архів у базі даних та повертає його список 
-        public static List<string>? LoadArchive(string Path)
+        // Метод для отримання данних про товар за унікальним ідентифікатором
+        public static string? GetItemById(string path, string idField)
         {
-            List<string> archive = new List<string>();
+            string[] files;
+            string? line;
 
             try
             {
-                using (StreamReader reader = new StreamReader(Path))
-                {
-                    string? line;
+                files = Directory.GetFiles(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                files = new string[0];
+            }
 
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        archive.Add(line);
-                    }
+            foreach (string filePath in files)
+            {
+                if ((line = GetItemFromDatabase(filePath, idField)) != null)
+                {
+                    return line;
                 }
             }
-            catch (FileNotFoundException)
-            {
-                return null;
-            }
-            return archive;
+            return null;
         }
 
         // Метод для завантаження з папки всіх продуктів з бази даних
@@ -107,29 +108,28 @@ namespace Біржа_товарів.Data
             return list;
         }
 
-        // Метод для отримання данних про товар за унікальним ідентифікатором
-        public static string? GetItemById(string path, string idField)
+        // Метод який зчитує архів у базі даних та повертає його список 
+        public static List<string>? LoadArchive(string Path)
         {
-            string[] files;
-            string? line;
+            List<string> archive = new List<string>();
 
             try
             {
-                files = Directory.GetFiles(path);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                files = new string[0];
-            }
-
-            foreach (string filePath in files)
-            {
-                if ((line = GetItemFromDatabase(filePath, idField)) != null)
+                using (StreamReader reader = new StreamReader(Path))
                 {
-                    return line;
+                    string? line;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        archive.Add(line);
+                    }
                 }
             }
-            return null;
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
+            return archive;
         }
 
         // Метод для видалення або зміни змісту строки з даними у базі даних

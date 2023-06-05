@@ -22,17 +22,17 @@ namespace Біржа_товарів.Models
         public string? Notes;
         public string? OwnerLogin;
 
-        public Product(string[] Productprop)
+        public Product(string[] ProductData)
         {
-            Id = int.Parse(Productprop[0]);
-            ProductName = Productprop[1];
-            ProductPrice = Productprop[2] != "" ? int.Parse(Productprop[2]) : 0;
-            ProductAmount = int.Parse(Productprop[3]);
-            Adress = Productprop[4];
-            PaymentForm = Productprop[5];
-            DeliveryCondition = Productprop[6];
-            Notes = Productprop[7];
-            OwnerLogin = Productprop[8];
+            Id = int.Parse(ProductData[0]);
+            ProductName = ProductData[1];
+            ProductPrice = ProductData[2] != "" ? int.Parse(ProductData[2]) : 0;
+            ProductAmount = int.Parse(ProductData[3]);
+            Adress = ProductData[4];
+            PaymentForm = ProductData[5];
+            DeliveryCondition = ProductData[6];
+            Notes = ProductData[7];
+            OwnerLogin = ProductData[8];
         }
 
         // Перевизначений метод ToString() для коректного відображення знайдених продуктів
@@ -57,10 +57,10 @@ namespace Біржа_товарів.Models
                     string productFieldName = item.Key;
                     string searchParameterValue = item.Value;
 
-                    var prop = product.GetType().GetField(productFieldName);
-                    var value = prop?.GetValue(product);
+                    var field = product.GetType().GetField(productFieldName);
+                    var value = field?.GetValue(product);
 
-                    if (prop != null && prop.Name == "ProductPrice" && 
+                    if (field != null && field.Name == "ProductPrice" && 
                         value != null && value is IConvertible)
                     {
                         int actualValue = Convert.ToInt32(value);
@@ -72,8 +72,8 @@ namespace Біржа_товарів.Models
                             break;
                         }
                     }
-                    else if (value != null && 
-                        (value.ToString().ToLower()?.Contains(searchParameterValue.ToLower()) != true))
+                    else if (value != null &&
+                        (value.ToString()?.ToLower().Contains(searchParameterValue.ToLower()) != true))
                     { 
                         found = false;
                         break;

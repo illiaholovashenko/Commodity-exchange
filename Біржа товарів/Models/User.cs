@@ -20,9 +20,10 @@ namespace Біржа_товарів.Models
 
         public string Login;
 
+        public string Telephone;
+
         protected string Password;
 
-        protected string Telephone;
 
 
         public User(string[] data) 

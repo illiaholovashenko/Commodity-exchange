@@ -168,7 +168,7 @@
             // ProductPriceField
             // 
             ProductPriceField.Location = new Point(35, 206);
-            ProductPriceField.MaxLength = 100;
+            ProductPriceField.MaxLength = 9;
             ProductPriceField.Name = "ProductPriceField";
             ProductPriceField.Size = new Size(215, 23);
             ProductPriceField.TabIndex = 27;

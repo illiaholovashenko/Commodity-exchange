@@ -15,13 +15,13 @@ namespace Біржа_товарів
             InitializeComponent();
         }
 
-        private void ToRegisterWindow_LinkClicked(object sender, 
+        private void ToRegisterWindow_LinkClicked(object sender,
             LinkLabelLinkClickedEventArgs e)
         {
             ChangeForm<RegistrationForm>(this);
         }
 
-        private void AuthorizationForm_FormClosing(object sender, 
+        private void AuthorizationForm_FormClosing(object sender,
             FormClosingEventArgs e)
         {
             Application.Exit();
@@ -37,7 +37,7 @@ namespace Біржа_товарів
             LoginError.Text = "";
         }
 
-        private void PasswordField_Validating(object sender, 
+        private void PasswordField_Validating(object sender,
             System.ComponentModel.CancelEventArgs e)
         {
             ValidateField(PasswordField, PasswordError, e, IsPasswordValid);
@@ -61,16 +61,16 @@ namespace Біржа_товарів
                 MainError.Text = "";
 
                 string? user;
-                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData, 
+                bool isSalesman = !IsAvailable(GetItemFromDatabase(SalesmenData,
                     $"Логін: {LoginField.Text};"));
-                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData, 
+                bool isCustomer = !IsAvailable(GetItemFromDatabase(CustomersData,
                     $"Логін: {LoginField.Text};"));
-                
+
                 if (isSalesman)
                 {
                     user = GetItemFromDatabase(SalesmenData, $"Логін: {LoginField.Text};");
 
-                    if (user.Contains($"Пароль: {PasswordField.Text};"))
+                    if (user != null && user.Contains($"Пароль: {PasswordField.Text};"))
                     {
                         Salesman salesman = new Salesman(GetData(user, 7));
 
@@ -87,7 +87,7 @@ namespace Біржа_товарів
                 {
                     user = GetItemFromDatabase(CustomersData, $"Логін: {LoginField.Text};");
 
-                    if (user.Contains($"Пароль: {PasswordField.Text};"))
+                    if (user != null && user.Contains($"Пароль: {PasswordField.Text};"))
                     {
                         Customer customer = new Customer(GetData(user, 7));
 

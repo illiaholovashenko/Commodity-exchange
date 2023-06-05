@@ -57,9 +57,11 @@
             // ArchiveList
             // 
             ArchiveList.FormattingEnabled = true;
+            ArchiveList.HorizontalScrollbar = true;
             ArchiveList.ItemHeight = 15;
             ArchiveList.Location = new Point(40, 77);
             ArchiveList.Name = "ArchiveList";
+            ArchiveList.SelectionMode = SelectionMode.None;
             ArchiveList.Size = new Size(350, 469);
             ArchiveList.TabIndex = 39;
             // 
@@ -74,6 +76,7 @@
             Name = "ArchiveForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
+            FormClosing += ArchiveForm_FormClosing;
             Load += ArchiveForm_Load;
             ResumeLayout(false);
             PerformLayout();

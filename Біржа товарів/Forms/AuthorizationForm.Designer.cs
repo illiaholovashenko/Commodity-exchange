@@ -110,8 +110,10 @@
             PasswordField.Location = new Point(35, 280);
             PasswordField.MaxLength = 100;
             PasswordField.Name = "PasswordField";
+            PasswordField.PasswordChar = '*';
             PasswordField.Size = new Size(215, 23);
             PasswordField.TabIndex = 6;
+            PasswordField.UseSystemPasswordChar = true;
             PasswordField.Validating += PasswordField_Validating;
             PasswordField.Validated += PasswordField_Validated;
             // 

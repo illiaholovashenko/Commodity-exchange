@@ -39,7 +39,7 @@ namespace Біржа_товарів.Forms
         private void PurchaseForm_Load(object sender, EventArgs e)
         {
             PurchaseFormLabel.Text = user is Salesman ? "Продаж товару" : "Покупка товару";
-            ProductName.Text = SelectedProduct.ProductName;
+            ProductNameField.Text = SelectedProduct.ProductName;
             TotalPrice.Text = (Amount.Value * SelectedProduct.ProductPrice).ToString();
             BuyButton.Text = user is Salesman ? "Продати" : "Купити";
         }
@@ -65,7 +65,7 @@ namespace Біржа_товарів.Forms
 
         private void BuyButton_Click(object sender, EventArgs e)
         {
-            string PurchaseData = $"Назва: {ProductName.Text}; " +
+            string PurchaseData = $"Назва: {ProductNameField.Text}; " +
                 $"Кількість: {Amount.Value}; Ціна: {TotalPrice.Text}; " +
                 $"ДатаЧас: {DateTime.Now.ToString("dd/MM/yy HH:mm:ss")}";
 
@@ -79,7 +79,7 @@ namespace Біржа_товарів.Forms
                 string? owner = GetItemFromDatabase(user is Salesman ?
                     CustomersData : SalesmenData, $"Логін: {SelectedProduct.OwnerLogin};");
 
-                string ownerArchivePath = owner.Split("Архів: ")[1];
+                string ownerArchivePath = owner is not null ? owner.Split("Архів: ")[1] : "";
 
                 WriteToDataBase(ownerArchivePath, PurchaseData);
 
@@ -92,7 +92,7 @@ namespace Біржа_товарів.Forms
                 {
                     string newValue = $"Кількість: {SelectedProduct.ProductAmount - Amount.Value}";
 
-                    string newLine = Regex.Replace(line, @"Кількість:\s+\d+", newValue);
+                    string newLine = line is not null ? Regex.Replace(line, @"Кількість:\s+\d+", newValue) : "";
 
                     ChangeLineInDataBase(user is Salesman ?
                         CustomerAddedProducts : SalesmenAddedProducts, line, newLine, null);
