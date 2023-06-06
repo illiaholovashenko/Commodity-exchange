@@ -36,7 +36,7 @@ namespace Біржа_товарів.Forms
         private void FindProductButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SearchProductForm searchProductForm = new SearchProductForm(user, 
+            SearchProductForm searchProductForm = new SearchProductForm(user,
                 CustomersWishes, SalesmenProducts);
             searchProductForm.Show();
         }

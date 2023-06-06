@@ -55,6 +55,7 @@
             // 
             // PurchaseFormLabel
             // 
+            PurchaseFormLabel.Anchor = AnchorStyles.Top;
             PurchaseFormLabel.AutoSize = true;
             PurchaseFormLabel.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             PurchaseFormLabel.Location = new Point(205, 44);
@@ -65,6 +66,7 @@
             // 
             // BuyButton
             // 
+            BuyButton.Anchor = AnchorStyles.Bottom;
             BuyButton.Cursor = Cursors.Hand;
             BuyButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             BuyButton.Location = new Point(260, 331);
@@ -77,6 +79,7 @@
             // 
             // PriceLabel
             // 
+            PriceLabel.Anchor = AnchorStyles.Left;
             PriceLabel.AutoSize = true;
             PriceLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             PriceLabel.Location = new Point(35, 280);
@@ -87,6 +90,7 @@
             // 
             // ProductNameLabel
             // 
+            ProductNameLabel.Anchor = AnchorStyles.Left;
             ProductNameLabel.AutoSize = true;
             ProductNameLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             ProductNameLabel.Location = new Point(35, 141);
@@ -97,6 +101,7 @@
             // 
             // ProductAmount
             // 
+            ProductAmount.Anchor = AnchorStyles.Left;
             ProductAmount.AutoSize = true;
             ProductAmount.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             ProductAmount.Location = new Point(35, 186);
@@ -107,6 +112,7 @@
             // 
             // Amount
             // 
+            Amount.Anchor = AnchorStyles.Left;
             Amount.Cursor = Cursors.Hand;
             Amount.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Amount.Location = new Point(134, 186);
@@ -116,17 +122,19 @@
             Amount.Value = new decimal(new int[] { 1, 0, 0, 0 });
             Amount.ValueChanged += Amount_ValueChanged;
             // 
-            // ProductName
+            // ProductNameField
             // 
+            ProductNameField.Anchor = AnchorStyles.Left;
             ProductNameField.AutoSize = true;
             ProductNameField.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
             ProductNameField.Location = new Point(172, 141);
-            ProductNameField.Name = "ProductName";
+            ProductNameField.Name = "ProductNameField";
             ProductNameField.Size = new Size(0, 25);
             ProductNameField.TabIndex = 11;
             // 
             // TotalPrice
             // 
+            TotalPrice.Anchor = AnchorStyles.Left;
             TotalPrice.AutoSize = true;
             TotalPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Underline, GraphicsUnit.Point);
             TotalPrice.Location = new Point(211, 280);
@@ -136,6 +144,7 @@
             // 
             // AmountError
             // 
+            AmountError.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             AmountError.AutoSize = true;
             AmountError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             AmountError.ForeColor = Color.Red;
@@ -159,6 +168,7 @@
             Controls.Add(BuyButton);
             Controls.Add(PurchaseFormLabel);
             Controls.Add(ReturnLabel);
+            MinimumSize = new Size(410, 415);
             Name = "PurchaseForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";

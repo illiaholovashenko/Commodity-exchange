@@ -30,7 +30,7 @@ namespace Біржа_товарів.Forms
             this.foundedProducts = foundedProducts;
         }
 
-        private void PurchaseForm_FormClosing(object sender, 
+        private void PurchaseForm_FormClosing(object sender,
             FormClosingEventArgs e)
         {
             Application.Exit();
@@ -40,24 +40,24 @@ namespace Біржа_товарів.Forms
         {
             PurchaseFormLabel.Text = user is Salesman ? "Продаж товару" : "Покупка товару";
             ProductNameField.Text = SelectedProduct.ProductName;
-            TotalPrice.Text = (Amount.Value * SelectedProduct.ProductPrice).ToString();
+            TotalPrice.Text = (Amount.Value * SelectedProduct.ProductPrice).ToString() + " грн";
             BuyButton.Text = user is Salesman ? "Продати" : "Купити";
         }
 
         private void Amount_ValueChanged(object sender, EventArgs e)
         {
-            TotalPrice.Text = (Amount.Value * SelectedProduct.ProductPrice).ToString();
+            TotalPrice.Text = (Amount.Value * SelectedProduct.ProductPrice).ToString() + " грн";
         }
 
         private void ReturnLabel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?", 
+            DialogResult result = MessageBox.Show("Ви точно хочете припинити операцію?",
                 "Підтвердіть припинення операції", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
                 this.Hide();
-                ProductSelectionForm selectionForm = new ProductSelectionForm(user, 
+                ProductSelectionForm selectionForm = new ProductSelectionForm(user,
                     foundedProducts);
                 selectionForm.Show();
             }
@@ -67,7 +67,7 @@ namespace Біржа_товарів.Forms
         {
             string PurchaseData = $"Назва: {ProductNameField.Text}; " +
                 $"Кількість: {Amount.Value}; Ціна: {TotalPrice.Text}; " +
-                $"ДатаЧас: {DateTime.Now.ToString("dd/MM/yy HH:mm:ss")}";
+                $"Дата та час укладення угоди: {DateTime.Now.ToString("dd/MM/yy HH:mm:ss")}";
 
             string? line = GetItemById(user is Salesman ?
                 CustomerAddedProducts : SalesmenAddedProducts, $"Id: {SelectedProduct.Id};");

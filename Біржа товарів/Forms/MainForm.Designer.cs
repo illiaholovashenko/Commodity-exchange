@@ -40,6 +40,7 @@
             // 
             // MainFormLabel
             // 
+            MainFormLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             MainFormLabel.AutoSize = true;
             MainFormLabel.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             MainFormLabel.Location = new Point(285, 85);
@@ -50,10 +51,13 @@
             // 
             // FindProductButton
             // 
+            FindProductButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             FindProductButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            FindProductButton.Location = new Point(512, 230);
+            FindProductButton.Location = new Point(576, 229);
+            FindProductButton.MaximumSize = new Size(300, 140);
+            FindProductButton.MinimumSize = new Size(159, 42);
             FindProductButton.Name = "FindProductButton";
-            FindProductButton.Size = new Size(200, 75);
+            FindProductButton.Size = new Size(159, 76);
             FindProductButton.TabIndex = 1;
             FindProductButton.Text = "Знайти товар";
             FindProductButton.UseVisualStyleBackColor = true;
@@ -61,10 +65,13 @@
             // 
             // AddProductButton
             // 
+            AddProductButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AddProductButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            AddProductButton.Location = new Point(104, 230);
+            AddProductButton.Location = new Point(83, 229);
+            AddProductButton.MaximumSize = new Size(300, 140);
+            AddProductButton.MinimumSize = new Size(159, 42);
             AddProductButton.Name = "AddProductButton";
-            AddProductButton.Size = new Size(200, 75);
+            AddProductButton.Size = new Size(159, 76);
             AddProductButton.TabIndex = 2;
             AddProductButton.Text = "Додати товар";
             AddProductButton.UseVisualStyleBackColor = true;
@@ -72,6 +79,7 @@
             // 
             // ExitButton
             // 
+            ExitButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ExitButton.Location = new Point(713, 29);
             ExitButton.Name = "ExitButton";
             ExitButton.Size = new Size(75, 23);
@@ -101,9 +109,10 @@
             // 
             // MeetingLabel
             // 
+            MeetingLabel.Anchor = AnchorStyles.Top;
             MeetingLabel.AutoSize = true;
             MeetingLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            MeetingLabel.Location = new Point(411, 31);
+            MeetingLabel.Location = new Point(328, 31);
             MeetingLabel.Name = "MeetingLabel";
             MeetingLabel.Size = new Size(65, 21);
             MeetingLabel.TabIndex = 6;
@@ -111,6 +120,7 @@
             // 
             // Archive
             // 
+            Archive.Anchor = AnchorStyles.Bottom;
             Archive.AutoSize = true;
             Archive.Location = new Point(362, 412);
             Archive.Name = "Archive";
@@ -122,7 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(809, 451);
             Controls.Add(Archive);
             Controls.Add(MeetingLabel);
             Controls.Add(RankText);
@@ -131,6 +141,8 @@
             Controls.Add(AddProductButton);
             Controls.Add(FindProductButton);
             Controls.Add(MainFormLabel);
+            MaximumSize = new Size(1000, 600);
+            MinimumSize = new Size(515, 435);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";

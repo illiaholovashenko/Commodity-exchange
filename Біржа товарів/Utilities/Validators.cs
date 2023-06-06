@@ -87,7 +87,7 @@ namespace Біржа_товарів.Utilities
         public static bool IsProductNameValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, 
-                new Regex(@"^[\p{L}\d\s]+$"), "Поле має містити літери або цифри", IsRightRegex);
+                new Regex(@"^[\p{L}\d\s,]+$"), "Поле має містити літери або цифри", IsRightRegex);
         }
 
         // Метод для перевірки вартості та кількості товарів
@@ -101,21 +101,21 @@ namespace Біржа_товарів.Utilities
         public static bool IsAdressValid(string Name, out string ErrorMessage)
         {
             return ProductFieldsValidating(Name, out ErrorMessage, 
-                new Regex(@"^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ]+,\s\d+,\s[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+,\s[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+\s\d+$"),
-                "Введіть аресу у форматі: Країна, Індекс, Місто, Вулиця Номер", IsRightRegex);
+                new Regex(@"^[А-ЩЬЮЯЇІЄҐа-щьюяїієґ]+,\s[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+,\s[А-ЩЬЮЯЇІЄҐа-щьюяїієґ\s]+\s\d+$"),
+                "Введіть аресу у форматі: Країна, Місто, Вулиця Номер", IsRightRegex);
         }
 
         // Метод для перевірки наявності тексту в базі даних
         public static bool IsAvailable(string FieldName, string Name, out string ErrorMessage)
         {
-            if ((GetItemFromDatabase(CustomersData, $"{FieldName}: {Name},") == null) 
-                && (GetItemFromDatabase(SalesmenData, $"{FieldName}: {Name},")) == null)
+            if ((GetItemFromDatabase(CustomersData, $"{FieldName}: {Name};") == null) 
+                && (GetItemFromDatabase(SalesmenData, $"{FieldName}: {Name};")) == null)
             {
                 ErrorMessage = "";
                 return true;
             }
 
-            ErrorMessage = $"Такий {FieldName} не доступний";
+            ErrorMessage = $"Такий {FieldName} вже зареєстровано";
             return false;
         }
 

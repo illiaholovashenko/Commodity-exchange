@@ -63,9 +63,10 @@
             // 
             // SalesMan
             // 
+            SalesMan.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             SalesMan.AutoSize = true;
             SalesMan.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            SalesMan.Location = new Point(98, 142);
+            SalesMan.Location = new Point(98, 137);
             SalesMan.Name = "SalesMan";
             SalesMan.Size = new Size(127, 29);
             SalesMan.TabIndex = 1;
@@ -75,9 +76,10 @@
             // 
             // Buyer
             // 
+            Buyer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             Buyer.AutoSize = true;
             Buyer.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            Buyer.Location = new Point(256, 142);
+            Buyer.Location = new Point(256, 137);
             Buyer.Name = "Buyer";
             Buyer.Size = new Size(115, 29);
             Buyer.TabIndex = 2;
@@ -87,9 +89,10 @@
             // 
             // NameLabel
             // 
+            NameLabel.Anchor = AnchorStyles.Left;
             NameLabel.AutoSize = true;
             NameLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            NameLabel.Location = new Point(35, 183);
+            NameLabel.Location = new Point(35, 178);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(50, 30);
             NameLabel.TabIndex = 3;
@@ -97,7 +100,8 @@
             // 
             // NameField
             // 
-            NameField.Location = new Point(35, 216);
+            NameField.Anchor = AnchorStyles.Left;
+            NameField.Location = new Point(35, 211);
             NameField.MaxLength = 100;
             NameField.Name = "NameField";
             NameField.Size = new Size(215, 23);
@@ -107,9 +111,10 @@
             // 
             // SurnameLable
             // 
+            SurnameLable.Anchor = AnchorStyles.Left;
             SurnameLable.AutoSize = true;
             SurnameLable.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            SurnameLable.Location = new Point(35, 253);
+            SurnameLable.Location = new Point(35, 248);
             SurnameLable.Name = "SurnameLable";
             SurnameLable.Size = new Size(105, 30);
             SurnameLable.TabIndex = 5;
@@ -117,9 +122,10 @@
             // 
             // PhoneNumberLabel
             // 
+            PhoneNumberLabel.Anchor = AnchorStyles.Left;
             PhoneNumberLabel.AutoSize = true;
             PhoneNumberLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            PhoneNumberLabel.Location = new Point(35, 322);
+            PhoneNumberLabel.Location = new Point(35, 317);
             PhoneNumberLabel.Name = "PhoneNumberLabel";
             PhoneNumberLabel.Size = new Size(174, 30);
             PhoneNumberLabel.TabIndex = 6;
@@ -127,9 +133,10 @@
             // 
             // LoginLable
             // 
+            LoginLable.Anchor = AnchorStyles.Left;
             LoginLable.AutoSize = true;
             LoginLable.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            LoginLable.Location = new Point(35, 395);
+            LoginLable.Location = new Point(35, 390);
             LoginLable.Name = "LoginLable";
             LoginLable.Size = new Size(64, 30);
             LoginLable.TabIndex = 7;
@@ -137,9 +144,10 @@
             // 
             // PasswordLabel
             // 
+            PasswordLabel.Anchor = AnchorStyles.Left;
             PasswordLabel.AutoSize = true;
             PasswordLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            PasswordLabel.Location = new Point(35, 463);
+            PasswordLabel.Location = new Point(35, 458);
             PasswordLabel.Name = "PasswordLabel";
             PasswordLabel.Size = new Size(85, 30);
             PasswordLabel.TabIndex = 8;
@@ -147,7 +155,8 @@
             // 
             // SurnameField
             // 
-            SurnameField.Location = new Point(35, 286);
+            SurnameField.Anchor = AnchorStyles.Left;
+            SurnameField.Location = new Point(35, 281);
             SurnameField.MaxLength = 100;
             SurnameField.Name = "SurnameField";
             SurnameField.Size = new Size(215, 23);
@@ -157,7 +166,8 @@
             // 
             // PhoneField
             // 
-            PhoneField.Location = new Point(35, 355);
+            PhoneField.Anchor = AnchorStyles.Left;
+            PhoneField.Location = new Point(35, 350);
             PhoneField.MaxLength = 16;
             PhoneField.Name = "PhoneField";
             PhoneField.PlaceholderText = "+380-__-___-____";
@@ -168,7 +178,8 @@
             // 
             // LoginField
             // 
-            LoginField.Location = new Point(35, 428);
+            LoginField.Anchor = AnchorStyles.Left;
+            LoginField.Location = new Point(35, 423);
             LoginField.MaxLength = 100;
             LoginField.Name = "LoginField";
             LoginField.Size = new Size(215, 23);
@@ -178,7 +189,8 @@
             // 
             // PasswordField
             // 
-            PasswordField.Location = new Point(35, 496);
+            PasswordField.Anchor = AnchorStyles.Left;
+            PasswordField.Location = new Point(35, 491);
             PasswordField.MaxLength = 100;
             PasswordField.Name = "PasswordField";
             PasswordField.PasswordChar = '*';
@@ -190,8 +202,9 @@
             // 
             // RegistrationButton
             // 
+            RegistrationButton.Anchor = AnchorStyles.Bottom;
             RegistrationButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            RegistrationButton.Location = new Point(127, 555);
+            RegistrationButton.Location = new Point(105, 545);
             RegistrationButton.Name = "RegistrationButton";
             RegistrationButton.Size = new Size(236, 48);
             RegistrationButton.TabIndex = 13;
@@ -201,9 +214,10 @@
             // 
             // ToAuthorizationFormLink
             // 
+            ToAuthorizationFormLink.Anchor = AnchorStyles.Bottom;
             ToAuthorizationFormLink.AutoSize = true;
             ToAuthorizationFormLink.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ToAuthorizationFormLink.Location = new Point(189, 606);
+            ToAuthorizationFormLink.Location = new Point(171, 596);
             ToAuthorizationFormLink.Name = "ToAuthorizationFormLink";
             ToAuthorizationFormLink.Size = new Size(102, 21);
             ToAuthorizationFormLink.TabIndex = 14;
@@ -213,60 +227,66 @@
             // 
             // NameError
             // 
+            NameError.Anchor = AnchorStyles.Left;
             NameError.AutoSize = true;
             NameError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             NameError.ForeColor = Color.Red;
-            NameError.Location = new Point(35, 242);
+            NameError.Location = new Point(35, 237);
             NameError.Name = "NameError";
             NameError.Size = new Size(0, 15);
             NameError.TabIndex = 15;
             // 
             // SurnameError
             // 
+            SurnameError.Anchor = AnchorStyles.Left;
             SurnameError.AutoSize = true;
             SurnameError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SurnameError.ForeColor = Color.Red;
-            SurnameError.Location = new Point(35, 312);
+            SurnameError.Location = new Point(35, 307);
             SurnameError.Name = "SurnameError";
             SurnameError.Size = new Size(0, 15);
             SurnameError.TabIndex = 16;
             // 
             // PhoneError
             // 
+            PhoneError.Anchor = AnchorStyles.Left;
             PhoneError.AutoSize = true;
             PhoneError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PhoneError.ForeColor = Color.Red;
-            PhoneError.Location = new Point(35, 380);
+            PhoneError.Location = new Point(35, 375);
             PhoneError.Name = "PhoneError";
             PhoneError.Size = new Size(0, 15);
             PhoneError.TabIndex = 17;
             // 
             // LoginError
             // 
+            LoginError.Anchor = AnchorStyles.Left;
             LoginError.AutoSize = true;
             LoginError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             LoginError.ForeColor = Color.Red;
-            LoginError.Location = new Point(35, 454);
+            LoginError.Location = new Point(35, 449);
             LoginError.Name = "LoginError";
             LoginError.Size = new Size(0, 15);
             LoginError.TabIndex = 18;
             // 
             // PasswordError
             // 
+            PasswordError.Anchor = AnchorStyles.Left;
             PasswordError.AutoSize = true;
             PasswordError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PasswordError.ForeColor = Color.Red;
-            PasswordError.Location = new Point(35, 522);
+            PasswordError.Location = new Point(35, 517);
             PasswordError.Name = "PasswordError";
             PasswordError.Size = new Size(0, 15);
             PasswordError.TabIndex = 19;
             // 
             // MainError
             // 
+            MainError.Anchor = AnchorStyles.Bottom;
             MainError.AutoSize = true;
             MainError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             MainError.ForeColor = Color.Red;
-            MainError.Location = new Point(157, 537);
+            MainError.Location = new Point(147, 527);
             MainError.Name = "MainError";
             MainError.Size = new Size(0, 15);
             MainError.TabIndex = 20;
@@ -275,7 +295,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(474, 652);
+            ClientSize = new Size(439, 642);
             Controls.Add(MainError);
             Controls.Add(PasswordError);
             Controls.Add(LoginError);
@@ -297,6 +317,8 @@
             Controls.Add(Buyer);
             Controls.Add(SalesMan);
             Controls.Add(RagistrationLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "RegistrationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";

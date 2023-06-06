@@ -26,7 +26,7 @@ namespace Біржа_товарів.Forms
             Application.Exit();
         }
 
-        private void ToAuthorizationFormLink_LinkClicked(object sender, 
+        private void ToAuthorizationFormLink_LinkClicked(object sender,
             LinkLabelLinkClickedEventArgs e)
         {
             ChangeForm<AuthorizationForm>(this);

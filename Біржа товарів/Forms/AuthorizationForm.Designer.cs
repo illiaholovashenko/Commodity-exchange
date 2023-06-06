@@ -54,7 +54,7 @@
             // 
             LoginLabel.AutoSize = true;
             LoginLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            LoginLabel.Location = new Point(35, 143);
+            LoginLabel.Location = new Point(34, 138);
             LoginLabel.Name = "LoginLabel";
             LoginLabel.Size = new Size(64, 30);
             LoginLabel.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             PasswordLabel.AutoSize = true;
             PasswordLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            PasswordLabel.Location = new Point(35, 234);
+            PasswordLabel.Location = new Point(34, 229);
             PasswordLabel.Name = "PasswordLabel";
             PasswordLabel.Size = new Size(85, 30);
             PasswordLabel.TabIndex = 2;
@@ -72,9 +72,10 @@
             // 
             // AuthorizationButton
             // 
+            AuthorizationButton.Anchor = AnchorStyles.Bottom;
             AuthorizationButton.Cursor = Cursors.Hand;
             AuthorizationButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            AuthorizationButton.Location = new Point(127, 360);
+            AuthorizationButton.Location = new Point(121, 326);
             AuthorizationButton.Name = "AuthorizationButton";
             AuthorizationButton.Size = new Size(236, 48);
             AuthorizationButton.TabIndex = 3;
@@ -84,10 +85,11 @@
             // 
             // ToRegisterWindow
             // 
+            ToRegisterWindow.Anchor = AnchorStyles.Bottom;
             ToRegisterWindow.AutoSize = true;
             ToRegisterWindow.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             ToRegisterWindow.LinkColor = Color.FromArgb(0, 0, 192);
-            ToRegisterWindow.Location = new Point(185, 411);
+            ToRegisterWindow.Location = new Point(179, 377);
             ToRegisterWindow.Name = "ToRegisterWindow";
             ToRegisterWindow.Size = new Size(120, 21);
             ToRegisterWindow.TabIndex = 4;
@@ -97,7 +99,7 @@
             // 
             // LoginField
             // 
-            LoginField.Location = new Point(35, 186);
+            LoginField.Location = new Point(34, 181);
             LoginField.MaxLength = 100;
             LoginField.Name = "LoginField";
             LoginField.Size = new Size(215, 23);
@@ -107,7 +109,7 @@
             // 
             // PasswordField
             // 
-            PasswordField.Location = new Point(35, 280);
+            PasswordField.Location = new Point(34, 275);
             PasswordField.MaxLength = 100;
             PasswordField.Name = "PasswordField";
             PasswordField.PasswordChar = '*';
@@ -122,17 +124,18 @@
             LoginError.AutoSize = true;
             LoginError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             LoginError.ForeColor = Color.Red;
-            LoginError.Location = new Point(35, 212);
+            LoginError.Location = new Point(34, 207);
             LoginError.Name = "LoginError";
             LoginError.Size = new Size(0, 15);
             LoginError.TabIndex = 16;
             // 
             // PasswordError
             // 
+            PasswordError.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             PasswordError.AutoSize = true;
             PasswordError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PasswordError.ForeColor = Color.Red;
-            PasswordError.Location = new Point(35, 306);
+            PasswordError.Location = new Point(29, 306);
             PasswordError.Name = "PasswordError";
             PasswordError.Size = new Size(0, 15);
             PasswordError.TabIndex = 17;
@@ -151,7 +154,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(474, 451);
+            ClientSize = new Size(462, 417);
             Controls.Add(MainError);
             Controls.Add(PasswordError);
             Controls.Add(LoginError);
@@ -162,6 +165,8 @@
             Controls.Add(PasswordLabel);
             Controls.Add(LoginLabel);
             Controls.Add(WindowName);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AuthorizationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";

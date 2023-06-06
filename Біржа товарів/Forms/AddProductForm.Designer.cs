@@ -57,9 +57,10 @@
             // 
             // AddProductLable
             // 
+            AddProductLable.Anchor = AnchorStyles.Top;
             AddProductLable.AutoSize = true;
             AddProductLable.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            AddProductLable.Location = new Point(102, 20);
+            AddProductLable.Location = new Point(95, 20);
             AddProductLable.Name = "AddProductLable";
             AddProductLable.Size = new Size(255, 45);
             AddProductLable.TabIndex = 19;
@@ -67,9 +68,10 @@
             // 
             // UnitPriceLabel
             // 
+            UnitPriceLabel.Anchor = AnchorStyles.Left;
             UnitPriceLabel.AutoSize = true;
             UnitPriceLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            UnitPriceLabel.Location = new Point(35, 168);
+            UnitPriceLabel.Location = new Point(35, 161);
             UnitPriceLabel.Name = "UnitPriceLabel";
             UnitPriceLabel.Size = new Size(178, 30);
             UnitPriceLabel.TabIndex = 20;
@@ -77,9 +79,10 @@
             // 
             // ProductAmount
             // 
+            ProductAmount.Anchor = AnchorStyles.Left;
             ProductAmount.AutoSize = true;
             ProductAmount.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ProductAmount.Location = new Point(294, 168);
+            ProductAmount.Location = new Point(294, 161);
             ProductAmount.Name = "ProductAmount";
             ProductAmount.Size = new Size(130, 30);
             ProductAmount.TabIndex = 21;
@@ -87,7 +90,8 @@
             // 
             // ProductAmountField
             // 
-            ProductAmountField.Location = new Point(294, 201);
+            ProductAmountField.Anchor = AnchorStyles.Left;
+            ProductAmountField.Location = new Point(294, 194);
             ProductAmountField.MaxLength = 6;
             ProductAmountField.Name = "ProductAmountField";
             ProductAmountField.Size = new Size(115, 23);
@@ -98,8 +102,9 @@
             // 
             // AddProductButton
             // 
+            AddProductButton.Anchor = AnchorStyles.Bottom;
             AddProductButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            AddProductButton.Location = new Point(133, 584);
+            AddProductButton.Location = new Point(126, 569);
             AddProductButton.Name = "AddProductButton";
             AddProductButton.Size = new Size(200, 55);
             AddProductButton.TabIndex = 23;
@@ -110,9 +115,10 @@
             // DeliveryConditionBox
             // 
             DeliveryConditionBox.AccessibleRole = AccessibleRole.None;
+            DeliveryConditionBox.Anchor = AnchorStyles.Left;
             DeliveryConditionBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            DeliveryConditionBox.Items.AddRange(new object[] { "Вся Україна", "Вся Європа (крім рф та Білорусії)", "Весь світ (крім рф та Білорусії)" });
-            DeliveryConditionBox.Location = new Point(35, 407);
+            DeliveryConditionBox.Items.AddRange(new object[] { "Вся Україна", "Вся Європа", "Весь світ" });
+            DeliveryConditionBox.Location = new Point(35, 400);
             DeliveryConditionBox.Name = "DeliveryConditionBox";
             DeliveryConditionBox.Size = new Size(215, 23);
             DeliveryConditionBox.TabIndex = 34;
@@ -120,16 +126,18 @@
             // PaymentFormBox
             // 
             PaymentFormBox.AccessibleRole = AccessibleRole.None;
+            PaymentFormBox.Anchor = AnchorStyles.Left;
             PaymentFormBox.DropDownStyle = ComboBoxStyle.DropDownList;
             PaymentFormBox.Items.AddRange(new object[] { "Готівка", "Картка Visa", "Картка MasterCard" });
-            PaymentFormBox.Location = new Point(35, 268);
+            PaymentFormBox.Location = new Point(35, 261);
             PaymentFormBox.Name = "PaymentFormBox";
             PaymentFormBox.Size = new Size(215, 23);
             PaymentFormBox.TabIndex = 33;
             // 
             // NotesField
             // 
-            NotesField.Location = new Point(35, 474);
+            NotesField.Anchor = AnchorStyles.Left;
+            NotesField.Location = new Point(35, 467);
             NotesField.MaxLength = 100;
             NotesField.Multiline = true;
             NotesField.Name = "NotesField";
@@ -140,9 +148,10 @@
             // 
             // NotesLabel
             // 
+            NotesLabel.Anchor = AnchorStyles.Left;
             NotesLabel.AutoSize = true;
             NotesLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            NotesLabel.Location = new Point(35, 441);
+            NotesLabel.Location = new Point(35, 434);
             NotesLabel.Name = "NotesLabel";
             NotesLabel.Size = new Size(103, 30);
             NotesLabel.TabIndex = 31;
@@ -150,9 +159,10 @@
             // 
             // DeliveryConditionLabel
             // 
+            DeliveryConditionLabel.Anchor = AnchorStyles.Left;
             DeliveryConditionLabel.AutoSize = true;
             DeliveryConditionLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            DeliveryConditionLabel.Location = new Point(35, 374);
+            DeliveryConditionLabel.Location = new Point(35, 367);
             DeliveryConditionLabel.Name = "DeliveryConditionLabel";
             DeliveryConditionLabel.Size = new Size(166, 30);
             DeliveryConditionLabel.TabIndex = 30;
@@ -160,10 +170,11 @@
             // 
             // AdressField
             // 
-            AdressField.Location = new Point(35, 339);
+            AdressField.Anchor = AnchorStyles.Left;
+            AdressField.Location = new Point(35, 332);
             AdressField.MaxLength = 100;
             AdressField.Name = "AdressField";
-            AdressField.PlaceholderText = "Країна, Індекс, Місто, Вулиця Номер";
+            AdressField.PlaceholderText = "Країна, Місто, Вулиця Номер";
             AdressField.Size = new Size(215, 23);
             AdressField.TabIndex = 29;
             AdressField.Validating += AdressField_Validating;
@@ -171,9 +182,10 @@
             // 
             // AdressLabel
             // 
+            AdressLabel.Anchor = AnchorStyles.Left;
             AdressLabel.AutoSize = true;
             AdressLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            AdressLabel.Location = new Point(35, 306);
+            AdressLabel.Location = new Point(35, 299);
             AdressLabel.Name = "AdressLabel";
             AdressLabel.Size = new Size(240, 30);
             AdressLabel.TabIndex = 28;
@@ -181,9 +193,10 @@
             // 
             // PaymentFormLabel
             // 
+            PaymentFormLabel.Anchor = AnchorStyles.Left;
             PaymentFormLabel.AutoSize = true;
             PaymentFormLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            PaymentFormLabel.Location = new Point(35, 235);
+            PaymentFormLabel.Location = new Point(35, 228);
             PaymentFormLabel.Name = "PaymentFormLabel";
             PaymentFormLabel.Size = new Size(151, 30);
             PaymentFormLabel.TabIndex = 27;
@@ -191,7 +204,8 @@
             // 
             // ProductPriceField
             // 
-            ProductPriceField.Location = new Point(35, 201);
+            ProductPriceField.Anchor = AnchorStyles.Left;
+            ProductPriceField.Location = new Point(35, 194);
             ProductPriceField.MaxLength = 9;
             ProductPriceField.Name = "ProductPriceField";
             ProductPriceField.Size = new Size(215, 23);
@@ -201,7 +215,8 @@
             // 
             // ProductNameField
             // 
-            ProductNameField.Location = new Point(35, 133);
+            ProductNameField.Anchor = AnchorStyles.Left;
+            ProductNameField.Location = new Point(35, 126);
             ProductNameField.MaxLength = 100;
             ProductNameField.Name = "ProductNameField";
             ProductNameField.Size = new Size(215, 23);
@@ -211,9 +226,10 @@
             // 
             // ProductNameLabel
             // 
+            ProductNameLabel.Anchor = AnchorStyles.Left;
             ProductNameLabel.AutoSize = true;
             ProductNameLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ProductNameLabel.Location = new Point(35, 100);
+            ProductNameLabel.Location = new Point(35, 93);
             ProductNameLabel.Name = "ProductNameLabel";
             ProductNameLabel.Size = new Size(141, 30);
             ProductNameLabel.TabIndex = 24;
@@ -233,79 +249,87 @@
             // 
             // ProductNameError
             // 
+            ProductNameError.Anchor = AnchorStyles.Left;
             ProductNameError.AutoSize = true;
             ProductNameError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ProductNameError.ForeColor = Color.Red;
-            ProductNameError.Location = new Point(35, 159);
+            ProductNameError.Location = new Point(35, 152);
             ProductNameError.Name = "ProductNameError";
             ProductNameError.Size = new Size(0, 15);
             ProductNameError.TabIndex = 38;
             // 
             // ProductPriceError
             // 
+            ProductPriceError.Anchor = AnchorStyles.Left;
             ProductPriceError.AutoSize = true;
             ProductPriceError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ProductPriceError.ForeColor = Color.Red;
-            ProductPriceError.Location = new Point(35, 227);
+            ProductPriceError.Location = new Point(35, 220);
             ProductPriceError.Name = "ProductPriceError";
             ProductPriceError.Size = new Size(0, 15);
             ProductPriceError.TabIndex = 39;
             // 
             // AdressError
             // 
+            AdressError.Anchor = AnchorStyles.Left;
             AdressError.AutoSize = true;
             AdressError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             AdressError.ForeColor = Color.Red;
-            AdressError.Location = new Point(35, 365);
+            AdressError.Location = new Point(35, 358);
             AdressError.Name = "AdressError";
             AdressError.Size = new Size(0, 15);
             AdressError.TabIndex = 41;
             // 
             // PaymentFormError
             // 
+            PaymentFormError.Anchor = AnchorStyles.Left;
             PaymentFormError.AutoSize = true;
             PaymentFormError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PaymentFormError.ForeColor = Color.Red;
-            PaymentFormError.Location = new Point(35, 294);
+            PaymentFormError.Location = new Point(35, 287);
             PaymentFormError.Name = "PaymentFormError";
             PaymentFormError.Size = new Size(0, 15);
             PaymentFormError.TabIndex = 42;
             // 
             // DeliveryConditionError
             // 
+            DeliveryConditionError.Anchor = AnchorStyles.Left;
             DeliveryConditionError.AutoSize = true;
             DeliveryConditionError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             DeliveryConditionError.ForeColor = Color.Red;
-            DeliveryConditionError.Location = new Point(35, 433);
+            DeliveryConditionError.Location = new Point(35, 426);
             DeliveryConditionError.Name = "DeliveryConditionError";
             DeliveryConditionError.Size = new Size(0, 15);
             DeliveryConditionError.TabIndex = 43;
             // 
             // NotesError
             // 
+            NotesError.Anchor = AnchorStyles.Left;
             NotesError.AutoSize = true;
             NotesError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             NotesError.ForeColor = Color.Red;
-            NotesError.Location = new Point(35, 537);
+            NotesError.Location = new Point(35, 530);
             NotesError.Name = "NotesError";
             NotesError.Size = new Size(0, 15);
             NotesError.TabIndex = 44;
             // 
             // AmountError
             // 
+            AmountError.Anchor = AnchorStyles.Left;
             AmountError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             AmountError.ForeColor = Color.Red;
-            AmountError.Location = new Point(294, 227);
+            AmountError.Location = new Point(294, 220);
             AmountError.Name = "AmountError";
             AmountError.Size = new Size(163, 38);
             AmountError.TabIndex = 45;
             // 
             // MainError
             // 
+            MainError.Anchor = AnchorStyles.Bottom;
             MainError.AutoSize = true;
             MainError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             MainError.ForeColor = Color.Red;
-            MainError.Location = new Point(84, 565);
+            MainError.Location = new Point(77, 550);
             MainError.Name = "MainError";
             MainError.Size = new Size(0, 15);
             MainError.TabIndex = 46;
@@ -314,7 +338,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(469, 651);
+            ClientSize = new Size(454, 636);
             Controls.Add(MainError);
             Controls.Add(AmountError);
             Controls.Add(NotesError);
@@ -340,6 +364,8 @@
             Controls.Add(ProductAmount);
             Controls.Add(UnitPriceLabel);
             Controls.Add(AddProductLable);
+            MaximumSize = new Size(800, 920);
+            MinimumSize = new Size(450, 660);
             Name = "AddProductForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";

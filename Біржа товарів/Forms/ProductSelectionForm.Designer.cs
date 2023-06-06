@@ -37,11 +37,13 @@
             // 
             // foundProductList
             // 
+            foundProductList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             foundProductList.FormattingEnabled = true;
+            foundProductList.HorizontalScrollbar = true;
             foundProductList.ItemHeight = 15;
             foundProductList.Location = new Point(39, 77);
             foundProductList.Name = "foundProductList";
-            foundProductList.Size = new Size(350, 469);
+            foundProductList.Size = new Size(350, 349);
             foundProductList.TabIndex = 0;
             // 
             // ReturnLabel
@@ -58,6 +60,7 @@
             // 
             // MainLabel
             // 
+            MainLabel.Anchor = AnchorStyles.Top;
             MainLabel.AutoSize = true;
             MainLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             MainLabel.Location = new Point(93, 9);
@@ -68,8 +71,9 @@
             // 
             // PurchaseButton
             // 
+            PurchaseButton.Anchor = AnchorStyles.Bottom;
             PurchaseButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            PurchaseButton.Location = new Point(107, 591);
+            PurchaseButton.Location = new Point(93, 471);
             PurchaseButton.Name = "PurchaseButton";
             PurchaseButton.Size = new Size(236, 48);
             PurchaseButton.TabIndex = 39;
@@ -79,10 +83,11 @@
             // 
             // PurchaseError
             // 
+            PurchaseError.Anchor = AnchorStyles.Bottom;
             PurchaseError.AutoSize = true;
             PurchaseError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PurchaseError.ForeColor = Color.Red;
-            PurchaseError.Location = new Point(107, 573);
+            PurchaseError.Location = new Point(93, 453);
             PurchaseError.Name = "PurchaseError";
             PurchaseError.Size = new Size(0, 15);
             PurchaseError.TabIndex = 40;
@@ -91,12 +96,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 651);
+            ClientSize = new Size(434, 531);
             Controls.Add(PurchaseError);
             Controls.Add(PurchaseButton);
             Controls.Add(MainLabel);
             Controls.Add(ReturnLabel);
             Controls.Add(foundProductList);
+            MinimumSize = new Size(365, 290);
             Name = "ProductSelectionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductSelectionForm";

@@ -80,7 +80,7 @@ namespace Біржа_товарів
                     }
                     else
                     {
-                        PasswordError.Text = "Пароль не правльний";
+                        PasswordError.Text = "Неправильний пароль";
                     }
                 }
                 else if (isCustomer)
@@ -97,12 +97,12 @@ namespace Біржа_товарів
                     }
                     else
                     {
-                        PasswordError.Text = "Пароль не правльний";
+                        PasswordError.Text = "Неправильний пароль";
                     }
                 }
                 else
                 {
-                    LoginError.Text = "Логін не правильний";
+                    LoginError.Text = "Перевірте правильність вашого логіну";
                 }
             }
         }

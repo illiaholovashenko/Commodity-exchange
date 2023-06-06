@@ -35,6 +35,7 @@
             // 
             // ArchiveLabel
             // 
+            ArchiveLabel.Anchor = AnchorStyles.Top;
             ArchiveLabel.AutoSize = true;
             ArchiveLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             ArchiveLabel.Location = new Point(91, 9);
@@ -56,23 +57,25 @@
             // 
             // ArchiveList
             // 
+            ArchiveList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ArchiveList.FormattingEnabled = true;
             ArchiveList.HorizontalScrollbar = true;
             ArchiveList.ItemHeight = 15;
             ArchiveList.Location = new Point(40, 77);
             ArchiveList.Name = "ArchiveList";
             ArchiveList.SelectionMode = SelectionMode.None;
-            ArchiveList.Size = new Size(350, 469);
+            ArchiveList.Size = new Size(350, 394);
             ArchiveList.TabIndex = 39;
             // 
             // ArchiveForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 651);
+            ClientSize = new Size(434, 531);
             Controls.Add(ArchiveLabel);
             Controls.Add(ReturnLabel);
             Controls.Add(ArchiveList);
+            MinimumSize = new Size(350, 270);
             Name = "ArchiveForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Біржа товарів";
