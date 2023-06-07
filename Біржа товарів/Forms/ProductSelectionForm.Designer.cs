@@ -105,7 +105,7 @@
             MinimumSize = new Size(365, 290);
             Name = "ProductSelectionForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ProductSelectionForm";
+            Text = "Біржа товарів";
             FormClosing += ProductSelectionForm_FormClosing;
             Load += ProductSelectionForm_Load;
             ResumeLayout(false);
