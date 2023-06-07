@@ -1,1 +1,5 @@
-﻿
+﻿Ім'я: Юрій; Прізвище: Павленко; Телефон: +380-95-024-2095; Логін: YuriyP1; Пароль: 12345678; Товари: ..\..\..\DataBase\SalesmenAddedProducts\YuriyP1Products.txt; Архів: ..\..\..\DataBase\SaleArchive\YuriyP1Archive.txt
+Ім'я: Олександр; Прізвище: Шевченко; Телефон: +380-99-234-0293; Логін: sasha12; Пароль: 12344321; Товари: ..\..\..\DataBase\SalesmenAddedProducts\sasha12Products.txt; Архів: ..\..\..\DataBase\SaleArchive\sasha12Archive.txt
+Ім'я: Тетяна; Прізвище: Коновалова; Телефон: +380-50-323-1298; Логін: konovtanya; Пароль: tanyatanya; Товари: ..\..\..\DataBase\SalesmenAddedProducts\konovtanyaProducts.txt; Архів: ..\..\..\DataBase\SaleArchive\konovtanyaArchive.txt
+Ім'я: Марія; Прізвище: Шевченко; Телефон: +380-23-439-2938; Логін: mashaaa; Пароль: 90909090; Товари: ..\..\..\DataBase\SalesmenAddedProducts\mashaaaProducts.txt; Архів: ..\..\..\DataBase\SaleArchive\mashaaaArchive.txt
+Ім'я: Єгор; Прізвище: Ткачов; Телефон: +380-96-238-0230; Логін: egooor; Пароль: egortktk; Товари: ..\..\..\DataBase\SalesmenAddedProducts\egooorProducts.txt; Архів: ..\..\..\DataBase\SaleArchive\egooorArchive.txt

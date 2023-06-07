@@ -1,1 +1,4 @@
-﻿
+﻿Ім'я: Ілля; Прізвище: Головашенко; Телефон: +380-50-779-4723; Логін: holovashenko; Пароль: 00000000; Товари: ..\..\..\DataBase\CustomersAddedProducts\holovashenkoProducts.txt; Архів: ..\..\..\DataBase\PurchasesArchive\holovashenkoArchive.txt
+Ім'я: Максим; Прізвище: Літало; Телефон: +380-77-230-9832; Логін: 11maks11; Пароль: maksmaks; Товари: ..\..\..\DataBase\CustomersAddedProducts\11maks11Products.txt; Архів: ..\..\..\DataBase\PurchasesArchive\11maks11Archive.txt
+Ім'я: Оксана; Прізвище: Заєць; Телефон: +380-92-332-2349; Логін: oksana; Пароль: 00998877; Товари: ..\..\..\DataBase\CustomersAddedProducts\oksanaProducts.txt; Архів: ..\..\..\DataBase\PurchasesArchive\oksanaArchive.txt
+Ім'я: Микита; Прізвище: Іванов; Телефон: +380-23-023-4230; Логін: nekitt; Пароль: nikitanikita; Товари: ..\..\..\DataBase\CustomersAddedProducts\nekittProducts.txt; Архів: ..\..\..\DataBase\PurchasesArchive\nekittArchive.txt
